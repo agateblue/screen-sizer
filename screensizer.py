@@ -18,7 +18,19 @@ class index:
             iframe_url = query.get('url', "")[0]
         except IndexError:
             iframe_url =  ""
-        return render.index(iframe_url, settings.sizes)
+
+        try:
+            width = int(query.get('width')[0])
+        except Exception, e:
+            print("exceptione", e)
+            width = settings.default_size[0]
+
+        try:
+            height = int(query.get('height')[0])
+        except:
+            height = settings.default_size[1]
+
+        return render.index(iframe_url, (width, height), settings.sizes, settings.title, settings.slogan)
 
 if __name__ == "__main__": 
     app = web.application(urls, globals())
