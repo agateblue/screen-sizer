@@ -1,0 +1,41 @@
+$def with (iframe_url, sizes)
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Screen sizer | $iframe_url</title>
+        <link href="static/css/app.css" media="screen" rel="stylesheet" type="text/css" />
+           
+        <script type="text/javascript" 
+        src="static/js/jquery.min.js" ></script>
+    </head>
+    <body>
+        <header>
+            <h1>Screen Sizer</h1>
+            <form id="website" method="POST" action="">
+                <input type="url" placeholder="Enter a valid URL here" name="url" />
+                <input type="submit" value="OK" />
+            </form>
+            <ul id="sizes">
+                $for category in sizes:
+                    <li id="$category[0]">
+                        <span class="label">$category[0]</span>
+                        <ul>
+                            $for size in category[1]:
+                                <li data-size="$size[2] $size[3]">
+                                    <span class="size-name">$size[0] </span>/<span class="size"> $size[2] x $size[3]</span>
+                                </li>
+                            </ul>
+                    </li>  
+
+                </ul>
+        </header>
+        <section>
+            <iframe id="external-content" src="$iframe_url" width="400" height="400"></iframe>
+        </section>
+        <script type="text/javascript" 
+        src="static/js/app.js" ></script>
+
+    </body>
+</html>
