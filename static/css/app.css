@@ -1,49 +1,82 @@
-
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+body {
+    font-family: "Lucida", "sans-serif";
+}
 header {    
-    border-bottom: 1px solid black;
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    padding: 0 1rem;
+    background-color: white;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }
 
-.branding, .tools  {
-    display:inline-block;
-    margin-right: 2rem;
-}
+
 h1 {
     font-size: 1.3rem;
+    float:right;
 }
-.slogan {
-    font-size: 1rem; 
-    margin: 0;
-    display:inline-block;
-}
-#sizes {
+
+#menu {
     margin-left: 0;
     list-style-type: none;
     padding: 0;
+    float:left;
 }
-#sizes > li {
+#menu > li {
     margin-left: 0;
     display:inline-block;
     margin-right: 1rem;
     position:relative;
+    cursor: pointer;
 }
-#sizes > li > ul {
+#menu > li > ul {
     background-color:white;
     display: none;
     padding: 1rem;
     list-style-type: none;
-    width: 15rem;
+    width: 20rem;
 }
-#sizes > li:hover > ul {
+#menu > li:hover > ul {
     display: block;
     position: absolute;
     top: 100%;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }
-#sizes > li > ul > li{
+#menu > li > ul > li{
     margin-left: 0;
-    margin-bottom: 0.5rem
+}
+.size-category .dimensions {
+    float:right;
+}
+
+.size-category .size {
+    padding: 0.5rem;
+}
+.size-category .size:hover {
+    background-color: grey;
+    cursor: pointer;
+}
+.size-category .size.active {
+    background-color: grey;
 }
 section {
-    margin-top: 1rem;
+    margin-top: 5rem;
+    text-align:center;
+}
+.tools {
+    margin-bottom: 1rem;
+}
+.tools > * {
+    display:inline-block;
+    margin-right: 2rem;
+}
+.tools label {
+    font-size: 0.9rem;
 }
 
 .label {
@@ -54,7 +87,15 @@ section {
 
 }
 
+footer {
+    text-align:center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
 footer > * {
     display: inline-block;
     margin-right: 2rem;
+    resize: both;
+
 }
+

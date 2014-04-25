@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 
 import web
-from urlparse import parse_qs
+from urlparse import parse_qs, urlparse
 import settings
 
 urls = (
   '/', 'index',
 )
 render = web.template.render('templates/')
-query = web.ctx.query
 
 class index:
     def GET(self):
@@ -30,7 +29,7 @@ class index:
         except:
             height = settings.default_size[1]
 
-        return render.index(iframe_url, (width, height), settings.sizes, settings.title, settings.slogan)
+        return render.index(iframe_url, (width, height), settings.sizes, settings.title)
 
 if __name__ == "__main__": 
     app = web.application(urls, globals())
