@@ -1,36 +1,46 @@
 #!/usr/bin/env python
-
-import web
-from urlparse import parse_qs, urlparse
+# -*- coding: utf-8 -*-
+from flask import Flask, render_template, request
+from flask.ext.babel import Babel
 import settings
 
-urls = (
-  '/', 'index',
-)
-render = web.template.render('templates/')
+import os
+import gettext
 
-class index:
-    def GET(self):
-        # get query string as dict and remove mark point
-        query = parse_qs(web.ctx.query[1:])
-        try:
-            iframe_url = query.get('url', "")[0]
-        except IndexError:
-            iframe_url =  ""
+app = Flask(__name__)
+babel = Babel(app)
 
-        try:
-            width = int(query.get('width')[0])
-        except Exception, e:
-            print("exceptione", e)
-            width = settings.default_size[0]
+from sizes import sizes
+@babel.localeselector
+def get_locale():    
+    # try to guess the language from the user accept
+    # header the browser transmits.  We support de/fr/en in this
+    # example.  The best match wins.
+    locale = request.accept_languages.best_match(settings.LANGUAGES.keys())
+    print('get locale', locale)
+    return  locale
 
-        try:
-            height = int(query.get('height')[0])
-        except:
-            height = settings.default_size[1]
+@app.route('/', methods=['GET', 'POST'])
+def index():       
+    iframe_url = request.args.get('url', "")
 
-        return render.index(iframe_url, (width, height), settings.sizes, settings.title)
+    try:
+        width = int(request.args.get("width"))
+    except Exception, e:
+        width = settings.default_size[0]
 
-if __name__ == "__main__": 
-    app = web.application(urls, globals())
-    app.run()   
+    try:
+        height = int(request.args.get("height"))
+    except:
+        height = settings.default_size[1]
+
+    return render_template(
+        "index.html",
+        iframe_url=iframe_url, 
+        dimensions=(width, height), 
+        sizes=sizes, 
+        title=settings.title
+    )
+
+if __name__ == "__main__":     
+    app.run(host="localhost", debug=settings.debug)   

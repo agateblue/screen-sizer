@@ -1,0 +1,83 @@
+# French translations for PROJECT.
+# Copyright (C) 2014 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-04-26 17:53+0200\n"
+"PO-Revision-Date: 2014-04-26 17:01+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
+
+#: sizes.py:8
+msgid "Desktop"
+msgstr "Bureau"
+
+#: sizes.py:24
+msgid "Tablet"
+msgstr "Tablette"
+
+#: sizes.py:38
+msgid "Mobile"
+msgstr "Téléphone"
+
+#: sizes.py:52
+msgid "TV"
+msgstr "TV"
+
+#: templates/index.html:28
+msgid "Rotate"
+msgstr "Tourner"
+
+#: templates/index.html:29
+msgid "Refresh"
+msgstr "Rafraîchir"
+
+#: templates/index.html:33
+msgid ""
+"Use Screen Sizer to check how a website renders under different viewport "
+"sizes"
+msgstr ""
+"Utilisez Screen Sizer pour vérifer le rendu d'un site web sur différentes"
+" résolutions d'écran"
+
+#: templates/index.html:36
+msgid "URL"
+msgstr "URL"
+
+#: templates/index.html:37
+msgid "Enter a valid URL here"
+msgstr "Entrez un URL valide"
+
+#: templates/index.html:38 templates/index.html:44
+msgid "OK"
+msgstr "Valider"
+
+#: templates/index.html:41
+msgid "Size in pixels (width/height)"
+msgstr "Taille en pixels (largeur/hauteur)"
+
+#: templates/index.html:48
+msgid "Permalink to this test"
+msgstr "Lien vers ce test"
+
+#: templates/index.html:52
+msgid "Original idea by Quirktools Screenfly"
+msgstr "Idée originale par Quirktools Screenfly"
+
+#: templates/index.html:53
+msgid "Hand crafted using"
+msgstr "Fabrication artisanale avec"
+
+#: templates/index.html:54
+msgid "Grab the source code and run your own"
+msgstr "Code source"
+

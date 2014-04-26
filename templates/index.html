@@ -1,10 +1,9 @@
-$def with (iframe_url, dimensions, sizes, title )
 <!DOCTYPE html>
 
 <html>
     <head>
         <meta charset="utf-8">
-        <title>$title</title>
+        <title>{{ title }}</title>
         <link href="static/css/app.css" media="screen" rel="stylesheet" type="text/css" />
            
         <script type="text/javascript" 
@@ -12,44 +11,47 @@ $def with (iframe_url, dimensions, sizes, title )
     </head>
     <body>
         <header>
-            <h1>$title</h1>
+            <h1>{{ title }}</h1>
                 <ul id="menu">
-                    $for category in sizes:
+                    {% for category in sizes %}
                         <li id="$category[0]" class="size-category">
-                            <span class="label">$category[0]</span>
+                            <span class="label">{{ _(category[0]) }}</span>
                             <ul>
-                                $for size in category[1]:
-                                    <li class="size" data-size="$size[2] $size[3]">
-                                        <span class="size-name">$size[0]</span><span class="dimensions">$size[2] x $size[3]</span>
-                                    </li>
-                                </ul>
+                            {% for size in category[1] %}
+                                <li class="size" data-size="{{ size[2] }} {{ size[3] }}">
+                                    <span class="size-name">{{ _(size[0]) }}</span><span class="dimensions">{{ size[2] }} x {{ size[3] }}</span>
+                                </li>
+                            {% endfor %}
+                            </ul>
                         </li>  
-                    <li id="rotate">$_("Rotate")</li>        
+                    {% endfor %}
+                    <li id="rotate">{{ _("Rotate") }}</li>        
+                    <li id="refresh">{{ _("Refresh") }}</li>    
                 </ul>
         </header>
         <section>
-            <p id="presentation">$_("Use Screen Sizer to check your website under different viewport sizes")</p>
+            <p id="presentation">{{ _("Use Screen Sizer to check how a website renders under different viewport sizes") }}</p>
             <div class="tools">
                 <form id="website" method="post" action="">
-                    <label for="frame-url">URL: </label>
-                    <input id="frame-url" size="45" type="text" placeholder="Enter a valid URL here" name="url" />
-                    <input type="submit" value="OK" />
+                    <label for="frame-url">{{ _('URL') }}</label>
+                    <input id="frame-url" size="45" type="text" placeholder="{{ _('Enter a valid URL here') }}" name="url" />
+                    <input type="submit" value="{{ _('OK') }}" />
                 </form>
                 <form id="custom-size" action="" method="get">
-                    <label for="custom-width">$_("Size in pixels (width/height):")</label>
-                    <input id="custom-width" type="number" class="width" size="4" placeholder="Width"  value="$dimensions[0]"/>
-                    <input type="number" class="height" placeholder="Height" size="4" value="$dimensions[1]" />
-                    <input type="submit" value="OK" />
+                    <label for="custom-width">{{ _('Size in pixels (width/height)') }}</label>
+                    <input id="custom-width" type="number" class="width" size="4" placeholder="Width"  value="{{ dimensions[0] }}"/>
+                    <input type="number" class="height" placeholder="Height" size="4" value="{{ dimensions[1] }}" />
+                    <input type="submit" value="{{ _('OK') }}" />
                 </form>
             </div>
-            <iframe id="external-content" src="$iframe_url" width="$dimensions[0]" height="$dimensions[1]"></iframe>
-             <p><a href="" id="permalink">$_("Permalink to this test")</a></p>
+            <iframe id="external-content" src="{{ iframe_url }}" width="{{ dimensions[0] }}" height="{{ dimensions[1] }}"></iframe>
+             <p><a href="" id="permalink">{{ _("Permalink to this test") }}</a></p>
         </section>
         <footer>
 
-            <p><a href="http://quirktools.com/screenfly/">$_('Original idea by Quirktools Screenfly')</a></p>
-            <p>$_('Hand crafted using') <a href="http://webpy.org">web.py</a>, <a href="http://jquery.com/">jQuery</a><p>
-            <p><a href="https://github.com/EliotBerriot/screen-sizer">$_('Grab the source code and run your own')</a></p>
+            <p><a href="http://quirktools.com/screenfly/">{{ _('Original idea by Quirktools Screenfly') }}</a></p>
+            <p>{{ _('Hand crafted using') }} <a href="http://flask.pocoo.org/">Flask</a>, <a href="http://jquery.com/">jQuery</a><p>
+            <p><a href="https://github.com/EliotBerriot/screen-sizer">{{ _('Grab the source code and run your own') }}</a></p>
         </footer>
         <script type="text/javascript" 
         src="static/js/app.js" ></script>

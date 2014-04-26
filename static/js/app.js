@@ -80,5 +80,10 @@ $(document).ready(function (){
         $("#permalink").attr("href", url);
         console.log($("#permalink").attr("href"));
     }
+    $("#refresh").on('click', function(event){
+        var iframe = $("#external-content");
+        iframe.attr('src', iframe.attr('src'));
+
+    });
 
 });
