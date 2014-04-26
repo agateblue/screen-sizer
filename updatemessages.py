@@ -1,3 +1,5 @@
+# append new translatable strings into .po files
+
 import os
 import sys
 os.system('pybabel extract -F babel.cfg -k lazy_gettext -o messages.pot .')

@@ -1,3 +1,5 @@
+# Create a translation catalog by parsing templates and python files
+# (as listed in babel.cfg)
 import os
 import sys
 

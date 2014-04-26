@@ -4,6 +4,7 @@ from flask.ext.babel import gettext as _
 # Default resolutions come from http://en.wikipedia.org/wiki/List_of_common_resolutions
 # size categories
 
+# icons are not supported yet
 desktop = (
     _("Desktop"),
     [

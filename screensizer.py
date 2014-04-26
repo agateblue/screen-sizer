@@ -17,12 +17,13 @@ def get_locale():
     # header the browser transmits.  We support de/fr/en in this
     # example.  The best match wins.
     locale = request.accept_languages.best_match(settings.LANGUAGES.keys())
-    print('get locale', locale)
     return  locale
 
 @app.route('/', methods=['GET', 'POST'])
-def index():       
-    iframe_url = request.args.get('url', "")
+def index():   
+
+    # get iframe URL from query string    
+    iframe_url = request.args.get('url', settings.default_iframe_url)
 
     try:
         width = int(request.args.get("width"))
@@ -35,11 +36,12 @@ def index():
         height = settings.default_size[1]
 
     return render_template(
-        "index.html",
+        settings.template_file,
         iframe_url=iframe_url, 
         dimensions=(width, height), 
         sizes=sizes, 
-        title=settings.title
+        title=settings.title,
+        assets=settings.assets
     )
 
 if __name__ == "__main__":     

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-26 17:53+0200\n"
+"POT-Creation-Date: 2014-04-26 18:56+0200\n"
 "PO-Revision-Date: 2014-04-26 17:01+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: fr <LL@li.org>\n"
@@ -17,67 +17,67 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: sizes.py:8
+#: sizes.py:9
 msgid "Desktop"
 msgstr "Bureau"
 
-#: sizes.py:24
+#: sizes.py:25
 msgid "Tablet"
 msgstr "Tablette"
 
-#: sizes.py:38
+#: sizes.py:39
 msgid "Mobile"
 msgstr "Téléphone"
 
-#: sizes.py:52
+#: sizes.py:53
 msgid "TV"
 msgstr "TV"
 
-#: templates/index.html:28
+#: templates/index.html:32
 msgid "Rotate"
 msgstr "Tourner"
 
-#: templates/index.html:29
+#: templates/index.html:33
 msgid "Refresh"
 msgstr "Rafraîchir"
 
-#: templates/index.html:33
+#: templates/index.html:37
 msgid ""
-"Use Screen Sizer to check how a website renders under different viewport "
+"Use this tool to check how a website renders under different viewport "
 "sizes"
 msgstr ""
-"Utilisez Screen Sizer pour vérifer le rendu d'un site web sur différentes"
+"Utilisez cet outil pour vérifer le rendu d'un site web sur différentes"
 " résolutions d'écran"
 
-#: templates/index.html:36
+#: templates/index.html:40
 msgid "URL"
 msgstr "URL"
 
-#: templates/index.html:37
+#: templates/index.html:41
 msgid "Enter a valid URL here"
 msgstr "Entrez un URL valide"
 
-#: templates/index.html:38 templates/index.html:44
+#: templates/index.html:42 templates/index.html:48
 msgid "OK"
 msgstr "Valider"
 
-#: templates/index.html:41
+#: templates/index.html:45
 msgid "Size in pixels (width/height)"
 msgstr "Taille en pixels (largeur/hauteur)"
 
-#: templates/index.html:48
+#: templates/index.html:52
 msgid "Permalink to this test"
 msgstr "Lien vers ce test"
 
-#: templates/index.html:52
+#: templates/index.html:56
 msgid "Original idea by Quirktools Screenfly"
 msgstr "Idée originale par Quirktools Screenfly"
 
-#: templates/index.html:53
+#: templates/index.html:57
 msgid "Hand crafted using"
 msgstr "Fabrication artisanale avec"
 
-#: templates/index.html:54
+#: templates/index.html:58
 msgid "Grab the source code and run your own"
 msgstr "Code source"
 
