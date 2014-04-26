@@ -95,4 +95,18 @@ $(document).ready(function (){
 
     });
     update_permalink();
+
+    $(".collapsible > .collapse").on('click', function(event){
+         event.preventDefault();
+        var content = $(".collapsible .content");
+        content.toggleClass("collapsed");
+
+        if ($(".collapsed").length > 0) {
+            $(this).html("+");
+        }
+        else {
+            $(this).html("-");
+        }
+
+    }); 
 });

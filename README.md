@@ -5,7 +5,7 @@ Screen Sizer is *heavily* inspired from [Quirktools Screenfly](http://quirktools
 - Licence:  Screen Sizer is free and open-source, licensed under GPLv3
 - Internationalization: at the moment, Screen Sizer is available in French and English, but can be easily translated to other languages
 - Runable locally: while you can perfectly install Screen Sizer on a web-server and make it available to anybody, you can also install use it from your computer
-- Customizable : you can provide your own CSS, or even recreate 
+- Customizable : you can provide your own CSS, JS or even recreate 
 
 # Why make a clone ?
 
