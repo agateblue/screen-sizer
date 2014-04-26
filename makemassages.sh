@@ -1,0 +1,1 @@
+find . -iname "*.html" | xargs xgettext --from-code=UTF-8 --default-domain=messages --language=Python -j

@@ -66,4 +66,12 @@ sizes = [
 
 default_size = (1024, 600)
 
-title = "Screen sizer"
+title = "Screen Sizer"
+
+
+#i18n
+
+languages = [
+    'fr_FR', 
+    'en_US'
+]

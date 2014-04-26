@@ -24,11 +24,11 @@ $def with (iframe_url, dimensions, sizes, title )
                                     </li>
                                 </ul>
                         </li>  
-                    <li id="rotate">Rotate</li>        
+                    <li id="rotate">$_("Rotate")</li>        
                 </ul>
         </header>
         <section>
-            <p id="presentation">Use Screen Sizer to check your website under different viewport sizes</p>
+            <p id="presentation">$_("Use Screen Sizer to check your website under different viewport sizes")</p>
             <div class="tools">
                 <form id="website" method="post" action="">
                     <label for="frame-url">URL: </label>
@@ -36,20 +36,20 @@ $def with (iframe_url, dimensions, sizes, title )
                     <input type="submit" value="OK" />
                 </form>
                 <form id="custom-size" action="" method="get">
-                    <label for="custom-width">Size in pixels (width/height):</label>
+                    <label for="custom-width">$_("Size in pixels (width/height):")</label>
                     <input id="custom-width" type="number" class="width" size="4" placeholder="Width"  value="$dimensions[0]"/>
                     <input type="number" class="height" placeholder="Height" size="4" value="$dimensions[1]" />
                     <input type="submit" value="OK" />
                 </form>
             </div>
             <iframe id="external-content" src="$iframe_url" width="$dimensions[0]" height="$dimensions[1]"></iframe>
-             <p><a href="" id="permalink">Permalink to this test</a></p>
+             <p><a href="" id="permalink">$_("Permalink to this test")</a></p>
         </section>
         <footer>
 
-            <p>Original idea at <a href="http://quirktools.com/screenfly/">Quirktools' Screenfly</a></p>
-            <p>Hand-crafted using <a href="http://webpy.org">web.py</a> and <a href="http://jquery.com/">jQuery</a><p>
-            <p><a href="http://code.eliotberriot.com/eliotberriot/screen-sizer">Grab the source code</a> and run your own</p>
+            <p><a href="http://quirktools.com/screenfly/">$_('Original idea by Quirktools Screenfly')</a></p>
+            <p>$_('Hand crafted using') <a href="http://webpy.org">web.py</a>, <a href="http://jquery.com/">jQuery</a><p>
+            <p><a href="https://github.com/EliotBerriot/screen-sizer">$_('Grab the source code and run your own')</a></p>
         </footer>
         <script type="text/javascript" 
         src="static/js/app.js" ></script>
