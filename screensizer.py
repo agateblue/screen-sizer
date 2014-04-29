@@ -46,6 +46,7 @@ def index(locale):
         title=settings.title,
         assets=settings.assets,
         languages=settings.LANGUAGES,
+        current_locale=locale,
     )
 
 if __name__ == "__main__":     

@@ -62,6 +62,11 @@ $(document).ready(function (){
         return url;
     }
 
+    $("#languages").on('change', function(event){
+        var locale = $(this).val();
+        var url = get_url();
+        window.location = "/" + locale + "?url=" + url;
+    });
     $("#rotate").on('click', function(event){
         // rotate the iframe
         var iframe = $("#external-content");

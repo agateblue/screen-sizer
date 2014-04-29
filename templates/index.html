@@ -49,6 +49,7 @@
                         <input type="number" class="height" placeholder="Height" size="4" value="{{ dimensions[1] }}" />
                         <input type="submit" value="{{ _('OK') }}" />
                     </form>
+                    
                 </div>
              <p><a href="" id="permalink">{{ _("Permalink to this test") }}</a></p>
             </div>
@@ -61,6 +62,14 @@
             <p><a href="http://quirktools.com/screenfly/">{{ _('Original idea by Quirktools Screenfly') }}</a></p>
             <p>{{ _('Hand crafted using') }} <a href="http://flask.pocoo.org/">Flask</a>, <a href="http://jquery.com/">jQuery</a><p>
             <p><a href="https://github.com/EliotBerriot/screen-sizer">{{ _('Grab the source code and run your own') }}</a></p>
+            <form id="language">                        
+                <select id="languages">
+                   {% for locale, attributes in languages.items() %}
+                        <option value="{{ attributes['flag'] }}"
+                        {% if attributes['flag'] == current_locale %} selected="selected"{% endif %}>{{ attributes['name'].decode('utf-8') }}</option>
+                   {% endfor %}
+                </select> 
+            </form>
         </footer>
         {% for js in assets['js-after'] %}
             <script type="text/javascript" 
