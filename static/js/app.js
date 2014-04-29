@@ -62,8 +62,8 @@ $(document).ready(function (){
 
     $("#languages").on('change', function(event){
         var locale = $(this).val();
-        var url = get_url();
-        window.location = "/" + locale + "?url=" + url;
+        var url = $("#permalink").attr("href");
+        window.location = "/" + locale + url.substring(url.indexOf("?"))
     });
     $("#rotate").on('click', function(event){
         // rotate the iframe
