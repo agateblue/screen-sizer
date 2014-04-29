@@ -10,17 +10,13 @@ html, body {
 body {
     font-family: "Lucida", "sans-serif";
 }
-header {    
-    position: fixed;
-    top:0;
-    left:0;
-    width: 100%;
+header { 
     padding: 0 1rem;
     background-color: white;
     box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }
 header #website {
-    margin: 1rem 2rem;
+    margin: 1rem;
     display:inline-block;
 }
 h1 {
@@ -38,6 +34,7 @@ h1 a {
     float:left;
 }
 #menu > li {
+    font-size: 0.9rem;
     margin-left: 0;
     display:inline-block;
     margin-right: 1rem;
@@ -79,12 +76,13 @@ h1 a {
     max-width: 4rem;
 }
 section {
-
-    padding-top: 4rem;
     min-height: 100%;
     margin-bottom: -6rem;
     text-align:center;
     padding-bottom: 1rem;
+}
+#permalink {
+    font-size: 0.9rem;
 }
 section:after {
     content:"";
