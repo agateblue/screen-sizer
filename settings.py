@@ -31,9 +31,9 @@ title = "Screen Sizer"
 #i18n
 
 LANGUAGES = {
-   'en': {'flag':'gb', 'name':'English'},
+   'en': {'flag':'en', 'name':'English'},
    'fr': {'flag':'fr', 'name':'Français'}
 }
 
-
+default_locale = "en"
 debug = True

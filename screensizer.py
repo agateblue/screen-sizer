@@ -1,30 +1,33 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from flask import Flask, render_template, request
-from flask.ext.babel import Babel
+from flask.ext.babel import Babel, refresh
 import settings
 
 import os
 import gettext
 
 app = Flask(__name__)
-babel = Babel(app)
+babel = Babel(app, default_locale=settings.default_locale)
 
 from sizes import sizes
+
 @babel.localeselector
 def get_locale():    
     # try to guess the language from the user accept
-    # header the browser transmits.  We support de/fr/en in this
-    # example.  The best match wins.
-    locale = request.accept_languages.best_match(settings.LANGUAGES.keys())
-    return  locale
+    # header the browser transmits. The best match wins.
+    #locale = request.accept_languages.best_match(settings.LANGUAGES.keys())
 
-@app.route('/', methods=['GET', 'POST'])
-def index():   
+    # Use locale as provided in url
+    locale = request.view_args.get("locale", settings.default_locale)
+    return locale
+
+@app.route('/<locale>', methods=['GET', 'POST'])
+def index(locale):   
 
     # get iframe URL from query string    
     iframe_url = request.args.get('url', settings.default_iframe_url)
-
+    refresh()
     try:
         width = int(request.args.get("width"))
     except Exception, e:
@@ -41,7 +44,8 @@ def index():
         dimensions=(width, height), 
         sizes=sizes, 
         title=settings.title,
-        assets=settings.assets
+        assets=settings.assets,
+        languages=settings.LANGUAGES,
     )
 
 if __name__ == "__main__":     
