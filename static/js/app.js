@@ -9,16 +9,6 @@ $(document).ready(function (){
     // set from URL from iframe src attribute
     $("#website input[name='url']").val($( "#external-content" ).attr('src'));
 
-
-    $( "#website" ).submit(function( event ) {
-        // append query string to URL before submitting url form
-        event.preventDefault();
-        var url = get_url();
-        window.location = window.location.pathname + "?url=" + url;
-    });
-
-
-
     $("li.size-category > ul").children().on("click", function(event) {
         // catch clicks on devices and update iframe size accordingly
         event.preventDefault();
@@ -34,24 +24,32 @@ $(document).ready(function (){
             height: height,
             width: width,
         }, 600, function() {});
-        $( "#custom-size" ).find('.width').val(width);
-        $( "#custom-size" ).find('.height').val(height);
+        $( "#website" ).find('.width').val(width);
+        $( "#website" ).find('.height').val(height);
         update_permalink();
     });
 
 
-    $( "#custom-size" ).submit(function( event ) {
+    $( "#website" ).submit(function( event ) {
         // use custom size form to update iframe dimensions
         event.preventDefault();
         $(".size-category .active").toggleClass("active");
         var url = get_url();
         var width = $(this).find('.width').val();
         var height = $(this).find('.height').val();
-        $( "#external-content" ).animate({
-            height: height,
-            width: width,
-        }, 600, function() {});
+        
         update_permalink();
+        if (get_url() === $("#external-content").attr("src")) {
+            // iframe url has not changed, juste need to update dimensions
+            $( "#external-content" ).animate({
+                height: height,
+                width: width,
+            }, 600, function() {});
+        }
+        else {
+            window.location = $("#permalink").attr("href");
+        }
+        
     });
     function get_url() {
         // return the form's URL, prepend it with http:// if no protocol is present
@@ -70,15 +68,15 @@ $(document).ready(function (){
     $("#rotate").on('click', function(event){
         // rotate the iframe
         var iframe = $("#external-content");
-        var height = $( "#custom-size" ).find('.width').val();
-        var width = $( "#custom-size" ).find('.height').val();
+        var height = $( "#website" ).find('.width').val();
+        var width = $( "#website" ).find('.height').val();
 
         iframe.animate({
             height: height,
             width: width,
         }, 600, function() {});
-        $( "#custom-size" ).find('.width').val(width);
-        $( "#custom-size" ).find('.height').val(height);
+        $( "#website" ).find('.width').val(width);
+        $( "#website" ).find('.height').val(height);
         update_permalink();
     });
      
@@ -88,8 +86,8 @@ $(document).ready(function (){
         console.log("updating permalink");
         var url = window.location.pathname;
         var iframe_url = get_url();
-        var width = $( "#custom-size" ).find('.width').val();
-        var height = $( "#custom-size" ).find('.height').val();
+        var width = $( "#website" ).find('.width').val();
+        var height = $( "#website" ).find('.height').val();
         url = url + "?url=" + iframe_url + "&width=" + width + "&height=" + height;
         $("#permalink").attr("href", url);
     }
@@ -100,18 +98,4 @@ $(document).ready(function (){
 
     });
     update_permalink();
-
-    $(".collapsible > .collapse").on('click', function(event){
-         event.preventDefault();
-        var content = $(".collapsible .content");
-        content.toggleClass("collapsed");
-
-        if ($(".collapsed").length > 0) {
-            $(this).html("+");
-        }
-        else {
-            $(this).html("-");
-        }
-
-    }); 
 });

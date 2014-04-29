@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask.ext.babel import Babel, refresh
 import settings
 
@@ -19,7 +19,7 @@ def get_locale():
     #locale = request.accept_languages.best_match(settings.LANGUAGES.keys())
 
     # Use locale as provided in url
-    locale = request.view_args.get("locale", settings.default_locale)
+    locale = request.view_args.get("locale", request.accept_languages.best_match(settings.LANGUAGES.keys()))
     return locale
 
 @app.route('/<locale>', methods=['GET', 'POST'])
@@ -48,6 +48,10 @@ def index(locale):
         languages=settings.LANGUAGES,
         current_locale=locale,
     )
+
+@app.route('/')
+def index_no_locale():
+    return redirect(url_for('index', locale=get_locale()))
 
 if __name__ == "__main__":     
     app.run(host="localhost", debug=settings.debug)   

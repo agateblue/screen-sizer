@@ -2,9 +2,13 @@
     box-sizing: border-box;
     -moz-box-sizing: border-box;
 }
+
+html, body {
+    height: 100%;
+    margin:0;
+}
 body {
     font-family: "Lucida", "sans-serif";
-    padding-top: 3rem;
 }
 header {    
     position: fixed;
@@ -15,28 +19,16 @@ header {
     background-color: white;
     box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }
-
-.collapsible {
-    text-align:center;
-    padding-top: 1rem;
-}
-
-.collapsible .collapse {
+header #website {
+    margin: 1rem 2rem;
     display:inline-block;
-    font-size: 1.5rem;
-    width: 2.5rem;
-    line-height: 2rem;
-    background-color: #CCCCCC;
-    padding: 0 0.5rem;
-    text-decoration: none;
-    margin-left: 2rem;
-}
-.collapsed {
-    display:none;    
 }
 h1 {
     font-size: 1.3rem;
     float:right;
+}
+h1 a {
+    text-decoration: none;
 }
 
 #menu {
@@ -82,38 +74,38 @@ h1 {
 .size-category .size.active {
     background-color: grey;
 }
+
+.width, .height {
+    max-width: 4rem;
+}
 section {
-    margin-top: 1rem;
+
+    padding-top: 4rem;
+    min-height: 100%;
+    margin-bottom: -5rem;
     text-align:center;
 }
-.tools {
-    margin-bottom: 1rem;
+section:after {
+    content:"";
+    display:block;
 }
-.tools > * {
-    display:inline-block;
-    margin-right: 2rem;
+section > p {
+    text-align: center;
 }
-.tools label {
-    font-size: 0.9rem;
+footer, section:after {
+    height:5rem;
 }
-
-.label {
-    font-weight: bold;
-}
-
-.size-name {
-
-}
-
 footer {
     text-align:center;
-    margin-top: 1rem;
     font-size: 0.9rem;
 }
 footer > * {
     display: inline-block;
     margin-right: 2rem;
-    resize: both;
+    margin-bottom: 0.3rem;
 
+}
+#presentation {
+    display: block;
 }
 
