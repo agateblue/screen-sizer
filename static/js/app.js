@@ -83,7 +83,6 @@ $(document).ready(function (){
     function update_permalink(){
         // update the permalink with new settings (url, size)
 
-        console.log("updating permalink");
         var url = window.location.pathname;
         var iframe_url = get_url();
         var width = $( "#website" ).find('.width').val();

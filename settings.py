@@ -24,16 +24,20 @@ template_file = "index.html"
 # Default size for Iframe
 default_size = (1024, 600)
 
+# Default URL that will display in Iframe when no URL is provided
 default_iframe_url = "http://en.wikipedia.org/wiki/Responsive_web_design"
+
+# Site title
 title = "Screen Sizer"
 
 
-#i18n
-
+#Available translations, accessible via screen-sizer.domain/<flag>
 LANGUAGES = {
    'en': {'flag':'en', 'name':'English'},
    'fr': {'flag':'fr', 'name':'Français'}
 }
 
 default_locale = "en"
+
+# Set this to False on production
 debug = True
