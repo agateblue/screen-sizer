@@ -13,6 +13,10 @@ Having control on services I use seems very important to me, especially when it'
 
 Screen Sizer can be run locally, without an Internet connection, with very few dependencies, or rebranded to better fit your needs.  
 
+# Requirements
+
+Screen Sizer is build upon [Flask](http://flask.pocoo.com), a micro-framework written in [Python](http://python.org). It uses [Flask-Babel]() to handle u18n, and [jQuery](http://jquery.com) for client side features.
+
 # Installation
 
 Follow these steps to get a working Screen Sizer instance, either locally or in production.
@@ -23,7 +27,7 @@ Screen Sizer requires Python 2.7 (but should work with Python 2.6).
 
 ### Virtualenv
 
-First of all, I recommand using `virtualenv``and `virtualenvwrapper` in order to properly isolate Screen Sizer dependencies. It's especially important if you plan to have multiple Python projects running on your machine.
+First of all, I recommand using [virtualenv] and [virtualenvwrapper] in order to properly isolate Screen Sizer dependencies. It's especially important if you plan to have multiple Python projects running on your machine.
 
 ### Get Screen Sizer
 

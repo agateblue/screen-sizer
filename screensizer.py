@@ -35,7 +35,9 @@ def get_locale():
     #locale = request.accept_languages.best_match(settings.LANGUAGES.keys())
 
     # Use locale as provided in url
-    locale = request.view_args.get("locale", request.accept_languages.best_match(settings.LANGUAGES.keys()))
+    locale = request.view_args.get(
+        "locale", 
+        request.accept_languages.best_match(settings.LANGUAGES.keys())) or settings.default_locale
     return locale
 
 @app.route('/<locale>', methods=['GET', 'POST'])
@@ -67,7 +69,7 @@ def index(locale):
 
 @app.route('/')
 def index_no_locale():
-    return redirect(url_for('index', locale=get_locale()))
+    return redirect(url_for('index', locale=get_locale()) + "?" + request.environ.get('QUERY_STRING'))
 
 if __name__ == "__main__":     
-    app.run(host="localhost", debug=settings.debug)   
+    app.run(host=settings.hostname, port=settings.port, debug=settings.debug) 

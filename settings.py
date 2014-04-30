@@ -30,7 +30,9 @@ default_iframe_url = "http://en.wikipedia.org/wiki/Responsive_web_design"
 # Site title
 title = "Screen Sizer"
 
-
+# Hostname and for, used by devserver
+hostname = "localhost"
+port = 5000
 #Available translations, accessible via screen-sizer.domain/<flag>
 LANGUAGES = {
    'en': {'flag':'en', 'name':'English'},
