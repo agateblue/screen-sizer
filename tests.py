@@ -1,5 +1,4 @@
 import unittest
-from flask import Flask
 import screensizer
 import os
 
