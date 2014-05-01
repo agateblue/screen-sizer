@@ -1,0 +1,51 @@
+{
+  "name": "rasterizehtml",
+  "title": "rasterizeHTML.js",
+  "version": "0.9.0",
+  "description": "Renders HTML into the browser's canvas.",
+  "keywords": [
+    "canvas",
+    "HTML"
+  ],
+  "homepage": "http://www.github.com/cburgmer/rasterizeHTML.js",
+  "bugs": "https://github.com/cburgmer/rasterizeHTML.js/issues",
+  "license": "MIT",
+  "author": {
+    "name": "Christoph Burgmer",
+    "email": "christoph.burgmer@gmail.com"
+  },
+  "directories": {
+    "lib": "./src/",
+    "example": "./examples/"
+  },
+  "browser": "dist/rasterizeHTML.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cburgmer/rasterizeHTML.js.git"
+  },
+  "dependencies": {
+    "url": "~0.10.1",
+    "xmlserializer": "~0.3.1",
+    "ayepromise": "~1.0.0",
+    "inlineresources": "~0.1.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-browserify": "~2.0.7",
+    "grunt-cli": "~0.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-jasmine": "~0.6.0",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-watch": "~0.5.2",
+    "grunt-regex-check": "~0.1.5",
+    "grunt-umd": "~1.6.2",
+    "imagediff": "~1.0.6",
+    "jasmine-core": "~2.0.0",
+    "jquery": "~2.1.0"
+  },
+  "scripts": {
+    "test": "bash go --verbose"
+  }
+}
