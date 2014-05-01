@@ -70,16 +70,21 @@ $(document).ready(function (){
         var iframe = $("#external-content");
         var height = $( "#website" ).find('.width').val();
         var width = $( "#website" ).find('.height').val();
+        update_width(width, height);
+        
+    });
+     
+    function update_width(width, height) {
+        $( "#website" ).find('.width').val(width);
+        $( "#website" ).find('.height').val(height);
 
+        var iframe = $("#external-content");
         iframe.animate({
             height: height,
             width: width,
         }, 600, function() {});
-        $( "#website" ).find('.width').val(width);
-        $( "#website" ).find('.height').val(height);
         update_permalink();
-    });
-     
+    }
     function update_permalink(){
         // update the permalink with new settings (url, size)
 
@@ -96,5 +101,26 @@ $(document).ready(function (){
         iframe.attr('src', iframe.attr('src'));
 
     });
+
+    $('#screenshot').on('click', function(event) {
+        var url = get_url();
+        console.log(url);
+        $.ajax({
+            url: url,
+            cache: false,            
+        })
+         .done(function(html) {
+        console.log( "success", html );
+        var canvas = document.getElementById("canvas");
+
+        rasterizeHTML.drawHTML(html, canvas);
+        })
+        .fail(function(html) {
+        console.log( "error" );
+        })
+        .always(function(html) {
+        console.log( "complete" );
+        });
+});
     update_permalink();
 });
