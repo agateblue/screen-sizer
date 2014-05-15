@@ -27,14 +27,19 @@ Screen Sizer requires Python 2.7 (but should work with Python 2.6).
 
 ### Virtualenv
 
-First of all, I recommand using [virtualenv] and [virtualenvwrapper] in order to properly isolate Screen Sizer dependencies. It's especially important if you plan to have multiple Python projects running on your machine.
+First of all, I recommand using [virtualenv](http://virtualenv.readthedocs.org/en/latest/virtualenv.html) and [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/) in order to properly isolate Screen Sizer dependencies. It's especially important if you plan to have multiple Python projects running on your machine.
+
+Ensure you have these tools installed on your machine then:
+
+    mkvirtualenv screen-sizer
+    workon screen-sizer # optional just after mkvirtualenv
 
 ### Get Screen Sizer
 
-    git clone https://github.com/EliotBerriot/Screen-sizer.git
+    git clone https://github.com/EliotBerriot/screen-sizer.git
     cd screen-sizer
 
-### Install Flask
+### Install python dependencies
 
 If you are using pip, it's easy:
 
@@ -43,6 +48,15 @@ If you are using pip, it's easy:
 With easy_install:
 
     easy_install flask flask-babel
+
+### Create a settings.py file
+
+Copy the example settings and edit it with your preferences (you should be able to use given settings out of the box):
+    
+    cp settings.py.inc settings.py
+    nano settings.py
+
+After that, you should be able to run
 
 
 # Translations

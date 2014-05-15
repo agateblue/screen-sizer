@@ -33,7 +33,8 @@ title = "Screen Sizer"
 # Hostname and for, used by devserver
 hostname = "localhost"
 port = 5000
-#Available translations, accessible via screen-sizer.domain/<flag>
+
+#Available translations, accessible via URL like http://screen-sizer.domain/<flag>
 LANGUAGES = {
    'en': {'flag':'en', 'name':'English'},
    'fr': {'flag':'fr', 'name':'Français'}
@@ -42,4 +43,4 @@ LANGUAGES = {
 default_locale = "en"
 
 # Set this to False on production
-debug = True
+debug = False
