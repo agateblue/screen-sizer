@@ -19,9 +19,9 @@ Screen Sizer is build upon [Flask](http://flask.pocoo.com), a micro-framework wr
 
 # Installation
 
-Follow these steps to get a working Screen Sizer instance, either locally or in production.
+## Locally
 
-## Common steps
+Follow these steps to get a working Screen Sizer instance, either locally or in production.
 
 Screen Sizer requires Python 2.7 (but should work with Python 2.6).
 
@@ -51,13 +51,35 @@ With easy_install:
 
 ### Create a settings.py file
 
-Copy the example settings and edit it with your preferences (you should be able to use given settings out of the box):
+Copy the example settings and edit it with your preferences (given settings should work out of the box):
     
     cp settings.py.inc settings.py
     nano settings.py
 
-After that, you should be able to run
+After that, you should be able to run the dev server and access Screen Sizer locally :
+    
+    python screensizer.py
+    # Open http://localhost:5000 (by default) in your web browser
+    
+If you only want a local instance of Screen Sizer, you can stop here.
+For easier launching, you could create a bash script with the following commands :
+    
+    # screesizer.sh
+    
+    workon screen-sizer
+    cd /path/to/your/screen/sizer/install
+    python screensizer.py
+    
+And run it with :
+    
+    bash screensizer.sh
 
+## Production instance
+
+You may want to have a screen Sizer instance publicly accessible over the internet.
+It's possible !
+
+Assuming you followed the 
 
 # Translations
 
