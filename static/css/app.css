@@ -3,7 +3,7 @@
     -moz-box-sizing: border-box;
 }
 
-html, body {
+html, body, .wrapper {
     height: 100%;
     margin:0;
 }
@@ -75,23 +75,27 @@ h1 a {
 .width, .height {
     max-width: 4rem;
 }
-section {
+.wrapper {
     min-height: 100%;
     margin-bottom: -6rem;
+    padding-bottom: 1rem;
+}
+section {
     text-align:center;
     padding-bottom: 1rem;
 }
+
 #permalink {
     font-size: 0.9rem;
 }
-section:after {
+.wrapper:after {
     content:"";
     display:block;
 }
 section > p {
     text-align: center;
 }
-footer, section:after {
+footer, .wrapper:after {
     height:6rem;
 }
 footer {

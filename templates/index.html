@@ -14,39 +14,40 @@
         {% endfor %}
     </head>
     <body>
-        <header>
-            <h1><a href="/">{{ title }}</a></h1>
-                <ul id="menu">
-                    {% for category in sizes %}
-                        <li id="{{ category[0] }}" class="size-category">
-                            <span class="label">{{ _(category[0]) }}</span>
-                            <ul>
-                            {% for size in category[1] %}
-                                <li class="size" data-size="{{ size[2] }} {{ size[3] }}">
-                                    <span class="size-name">{{ _(size[0]) }}</span><span class="dimensions">{{ size[2] }} x {{ size[3] }}</span>
-                                </li>
-                            {% endfor %}
-                            </ul>
-                        </li>  
-                    {% endfor %}
-                    <li id="rotate">{{ _("Rotate") }}</li>        
-                    <li id="refresh">{{ _("Refresh") }}</li>
-                    <li id="screenshot">{{ _("Screenshot") }}</li>
-                </ul>
-                <form id="website" method="post" action="">
-                    <input id="frame-url" size="35" type="text" placeholder="{{ _('Enter a valid URL here') }}" title='{{ _('Enter a valid URL here') }}' name="url" />
-                    <input id="custom-width" type="number" class="width" size="4" 
-                        placeholder="{{ _('width') }}" title="{{ _('width') }}" value="{{ dimensions[0] }}"/>
-                    <input type="number" class="height" placeholder="{{ _('height') }}" title="{{ _('height') }}" size="4" value="{{ dimensions[1] }}" />
-                    <input type="submit" value="{{ _('OK') }}" />
-                </form>
-        </header>
-        <section>            
-            <p><a href="" id="permalink">{{ _("Permalink to this test") }}</a></p>
-        
-            <iframe id="external-content" src="{{ iframe_url }}" width="{{ dimensions[0] }}" height="{{ dimensions[1] }}"></iframe>
-            <canvas id="canvas" width="400" height="400"></canvas>
-        </section>
+        <div class="wrapper">
+            <header>
+                <h1><a href="/">{{ title }}</a></h1>
+                    <ul id="menu">
+                        {% for category in sizes %}
+                            <li id="{{ category[0] }}" class="size-category">
+                                <span class="label">{{ _(category[0]) }}</span>
+                                <ul>
+                                {% for size in category[1] %}
+                                    <li class="size" data-size="{{ size[2] }} {{ size[3] }}">
+                                        <span class="size-name">{{ _(size[0]) }}</span><span class="dimensions">{{ size[2] }} x {{ size[3] }}</span>
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                            </li>  
+                        {% endfor %}
+                        <li id="rotate">{{ _("Rotate") }}</li>        
+                        <li id="refresh">{{ _("Refresh") }}</li>
+                        <li id="screenshot">{{ _("Screenshot") }}</li>
+                    </ul>
+                    <form id="website" method="post" action="">
+                        <input id="frame-url" size="35" type="text" placeholder="{{ _('Enter a valid URL here') }}" title='{{ _('Enter a valid URL here') }}' name="url" />
+                        <input id="custom-width" type="number" class="width" size="4" 
+                            placeholder="{{ _('width') }}" title="{{ _('width') }}" value="{{ dimensions[0] }}"/>
+                        <input type="number" class="height" placeholder="{{ _('height') }}" title="{{ _('height') }}" size="4" value="{{ dimensions[1] }}" />
+                        <input type="submit" value="{{ _('OK') }}" />
+                    </form>
+            </header>
+            <section>            
+                <p><a href="" id="permalink">{{ _("Permalink to this test") }}</a></p>
+            
+                <iframe id="external-content" src="{{ iframe_url }}" width="{{ dimensions[0] }}" height="{{ dimensions[1] }}"></iframe>
+            </section>
+        </div>
         <footer>
 
                 <p id="presentation">{{ _("Use this tool to check how a website renders under different viewport sizes") }}</p>    
