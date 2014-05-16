@@ -1,17 +1,31 @@
-Screen Sizer is a web tool designed to help you in testing your responsive webdesign, by allowing you to easily check how your website renders under different resolutions.
+Screen Sizer is a web tool designed to help you during your reponsive webdesign
+testing process. By entering a URL, you can display a website in an <iframe> and
+resize it on the fly. This tool is *heavily* inspired from [Quirktools
+Screenfly](http://quirktools.com/screenfly). 
 
-Screen Sizer is *heavily* inspired from [Quirktools Screenfly](http://quirktools.com/screenfly). The main differences are :
-    
-- Licence:  Screen Sizer is free and open-source, licensed under GPLv3
-- I18n: Screen Sizer can be easily translated to other languages (see [Translations](#Translations) for a list of available languages)
-- Runable locally: while you can perfectly install Screen Sizer on a web-server and make it available to anybody, you can also install use it from your computer
-- Customizable: you can provide your own CSS, JS or even recreate a whole template that better fits your needs
+WARNING : Screen Sizer do not replace cross-browser testing.
+
+A demo instance is available at
+(http://screensizer.eliotberriot.com)[http://screensizer.eliotberriot.com].
 
 # Why make a clone ?
 
 Having control on services I use seems very important to me, especially when it's work related. Screenfly is a great tool, but there is absolutely no warranty it'll be available tomorrow.
+I also wanted some features that were not available in Screenfly.
 
-Screen Sizer can be run locally, without an Internet connection, with very few dependencies, or rebranded to better fit your needs.  
+# Features
+
+- Support both given and custom sizes
+- Each test (URL and dimension) 
+- Sharable test, via permalink
+- Multilingual (see
+[Available translations](#Available translations) for a list of available
+languages)
+- Free as in free beer and free speech (licenced under GPLv3)
+- Runable locally, on your very own computer
+- Can be deployed on a webserver, for public access over the internet
+- Customizable: you can provide your own CSS, JS or even recreate a
+whole template that better fits your needs
 
 # Requirements
 
@@ -64,7 +78,7 @@ After that, you should be able to run the dev server and access Screen Sizer loc
 If you only want a local instance of Screen Sizer, you can stop here.
 For easier launching, you could create a bash script with the following commands :
     
-    # screesizer.sh
+    # screensizer.sh
     
     workon screen-sizer
     cd /path/to/your/screen/sizer/install
@@ -107,10 +121,14 @@ Edit `virtualenv_path` in Screen sizer settings:
     nano settings.py    
     # Replace 'virtualenv_path' line and with your own path
     
-# Translations
+# Available translations
 
 - French
 - English
+
+# Roadmap
+
+- Add a client-side screenshot feature
 
 # License
 
