@@ -44,6 +44,3 @@ default_locale = "en"
 
 # Set this to False on production
 debug = False
-
-# Edit this for production
-virtualenv_path = "/home/user/.virtualenvs/screen-sizer"
