@@ -2,8 +2,7 @@ import settings
 import os
 
  # from http://bucksnort.pennington.net/blog/post/deploy-flask-mod_wsgi_virtenv/
-activate_this =
-settings.virtualenv_path + '/bin/activate_this.py'
+activate_this = settings.virtualenv_path + '/bin/activate_this.py'
 execfile(activate_this, dict(__file__=activate_this))
 
 import sys
