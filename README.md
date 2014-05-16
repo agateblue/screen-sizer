@@ -19,9 +19,9 @@ Screen Sizer is build upon [Flask](http://flask.pocoo.com), a micro-framework wr
 
 # Installation
 
-## Locally
+## Local instance
 
-Follow these steps to get a working Screen Sizer instance, either locally or in production.
+Follow these steps to get a working Screen Sizer local instance. These steps are also needed in case of a production instance.
 
 Screen Sizer requires Python 2.7 (but should work with Python 2.6).
 
@@ -79,8 +79,34 @@ And run it with :
 You may want to have a screen Sizer instance publicly accessible over the internet.
 It's possible !
 
-Assuming you followed the 
+Assuming you followed all the steps described in the 'Local instance' section,
+you just need to configure your webserver for serving Screen Sizer.
 
+I will cover only one setup, but other configurations are of course possible
+(feel free to contribute to this part).
+
+### Apache and mod_wsgi
+
+Just in case:
+    
+    cd screen-sizer
+
+First, install `mod_wsgi`:
+    
+    sudo apt-get install libapache2-mod-wsgi
+    
+Create the virtualhost file and edit it:
+    
+    sudo cp config/apache /etc/apache2/sites-enabled/screensizer
+    nano /etc/apache2/sites-enabled/screensizer
+
+    sudo service apache2 restart
+
+Edit `virtualenv_path` in Screen sizer settings:
+    
+    nano settings.py    
+    # Replace 'virtualenv_path' line and with your own path
+    
 # Translations
 
 - French
