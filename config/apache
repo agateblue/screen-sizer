@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+    ServerName yourdomain.com
+
+    WSGIDaemonProcess screensizer user=youruser group=yourgroup threads=5
+    WSGIScriptAlias / /path/to/screen/sizer/wsgi.py
+
+    <Directory /path/to/screen/sizer>
+        WSGIProcessGroup screensizer
+        WSGIApplicationGroup %{GLOBAL}
+        Order deny,allow
+        Allow from all
+    </Directory>
+</VirtualHost>
