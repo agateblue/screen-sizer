@@ -96,7 +96,7 @@ footer {
     font-size: 0.9rem;
     padding: 0.5rem 1rem;
 }
-footer > * {
+footer > *:not(#presentation):not(:last-child) {
     display: inline-block;
     margin-right: 2rem;
     margin-bottom: 0.3rem;
