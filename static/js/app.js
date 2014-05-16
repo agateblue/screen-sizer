@@ -102,28 +102,5 @@ $(document).ready(function (){
 
     });
 
-    
-    $('#screenshot').on('click', function(event) {
-        var url = get_url();
-       
-        var w = parseInt($( "#website" ).find('.width').val(), 10);
-        var h = parseInt($( "#website" ).find('.height').val(), 10);
-        console.log(w, h, url);
-        var options = {
-            width: w,
-            height: h
-        };
-
-        var canvas = $("#canvas");
-        //canvas.width(w).height(h);
-        //rasterizeHTML.drawURL(url, canvas, options);
-        rasterizeHTML.drawHTML('<div style="font-size: 20px;">' +
-            'Some <span style="color: green">HTML</span>' +
-            ' with an image ' +
-            '</div>',
-            canvas);
-        console.log("canvas drawed");
-    });
-
     update_permalink();
 });
