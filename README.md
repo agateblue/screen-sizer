@@ -6,7 +6,7 @@ Screenfly](http://quirktools.com/screenfly).
 WARNING : Screen Sizer do not replace cross-browser testing.
 
 A demo instance is available at
-(http://screensizer.eliotberriot.com)[http://screensizer.eliotberriot.com].
+[http://screensizer.eliotberriot.com](http://screensizer.eliotberriot.com).
 
 # Why make a clone ?
 
