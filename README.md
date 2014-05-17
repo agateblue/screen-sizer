@@ -126,6 +126,18 @@ Edit `virtualenv_path` in Screen sizer settings:
 - French
 - English
 
+# Changelog
+
+## 0.2 (17 may 2014)
+
+- Changes on layout and design
+- Added "About" modal
+- Added bookmarklet
+
+## 0.1 (16 may 2014)
+
+- Initial release
+
 # Roadmap
 
 - Add a client-side screenshot feature
