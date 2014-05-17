@@ -1,10 +1,28 @@
 from flask.ext.babel import gettext as _
 
+# a pack of commons size for fast testing and javascript shortcut
+frequent = (
+    (240, 320),
+    (320, 480),
+    (360, 640),
+    (640, 480),
+    (800, 600),
+    (1024, 768),
+    (1280, 960),
+    (1680, 1050),
+    (1920, 1080),
+)
+
+
 # default sizes available
 # Default resolutions come from http://en.wikipedia.org/wiki/List_of_common_resolutions
 # size categories
 
 # icons are not supported yet
+
+
+
+
 desktop = (
     _("Desktop"),
     [

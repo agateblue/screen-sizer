@@ -128,6 +128,14 @@ Edit `virtualenv_path` in Screen sizer settings:
 
 # Changelog
 
+## 0.3 (17 may 2014)
+
+- Small javascript refactoring
+- Added keyboard shorcut (inpired by [TestSize](http://testsize.com/):
+    - for zooming-in (+) and out (-)
+    - for iterating through sizes registered under "Frequent" menu (spacebar)
+    - for rotation (r)
+
 ## 0.2.2 (17 may 2014)
 
 - Fixed internal issue when a non-registered locale was provided via URL

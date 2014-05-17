@@ -15,7 +15,7 @@
     </head>
     <body>
         <div class="wrapper">
-            <header>               
+            <header>  
                 <ul id="menu">
                     {% for category in sizes %}
                         <li id="{{ category[0] }}" class="size-category">
@@ -29,6 +29,15 @@
                             </ul>
                         </li>  
                     {% endfor %}
+                    <li id="frequent" class="size-category"><span class="label">{{ _("Frequent") }}</span>
+                        <ul>
+                        {% for size in frequent %}
+                            <li class="size" data-size="{{ size[0] }} {{ size[1] }}">
+                                <span class="dimensions">{{ size[0] }} x {{ size[1] }}</span>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </li>
                     <li id="rotate">{{ _("Rotate") }}</li>        
                     <li id="refresh">{{ _("Refresh") }}</li>  
                     <li><a href="" id="permalink" title='{{ _("Permalink to this test") }}'>{{ _("Permalink") }}</a></li>

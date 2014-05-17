@@ -26,7 +26,7 @@ import gettext
 app = Flask(__name__)
 babel = Babel(app, default_locale=settings.default_locale)
 
-from sizes import sizes
+import sizes
 
 @babel.localeselector
 def get_locale():    
@@ -65,7 +65,8 @@ def index(locale):
         settings.template_file,
         iframe_url=iframe_url, 
         dimensions=(width, height), 
-        sizes=sizes, 
+        sizes=sizes.sizes, 
+        frequent=sizes.frequent,
         title=settings.title,
         assets=settings.assets,
         languages=settings.LANGUAGES,
