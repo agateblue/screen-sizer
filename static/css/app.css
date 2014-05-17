@@ -7,7 +7,7 @@ html, body {
     margin:0;
 }
 body {
-    font-family: "Lucida", "sans-serif";
+    font-family: "Lucida", sans-serif;
 }
 header { 
     background-color: white;
