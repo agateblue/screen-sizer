@@ -30,7 +30,8 @@
                         </li>  
                     {% endfor %}
                     <li id="rotate">{{ _("Rotate") }}</li>        
-                    <li id="refresh">{{ _("Refresh") }}</li>                            
+                    <li id="refresh">{{ _("Refresh") }}</li>  
+                    <li><a href="" id="permalink" title='{{ _("Permalink to this test") }}'>{{ _("Permalink") }}</a></li>
                 </ul>
                 <form id="language">                        
                     <select id="languages">
@@ -40,7 +41,7 @@
                     {% endfor %}
                     </select> 
                 </form>
-                <div id="info">
+                <div id="about">
                     <p id="presentation">{{ _("Use this tool to check how a website renders under different viewport sizes") }}</p>    
                     <p><a href="http://quirktools.com/screenfly/">{{ _('Original idea by Quirktools Screenfly') }}</a></p>
                     <p>{{ _('Hand crafted using') }} <a href="http://flask.pocoo.org/">Flask</a>, <a href="http://jquery.com/">jQuery</a><p>
@@ -62,7 +63,7 @@ _('height') }}" title="{{ _('height') }}" value="{{ dimensions[1] }}"
 />
                         <input type="submit" value="{{ _('OK') }}" />
                     </form>
-                    <a href="" id="permalink">{{ _("Permalink to this test") }}</a>
+                    
                 </div>
                 <iframe id="external-content" src="{{ iframe_url }}" width="{{ dimensions[0] }}" height="{{ dimensions[1] }}"></iframe>
             </section>
