@@ -42,7 +42,7 @@ mobile = (
         ("Motorola RAZR V3m", "", 176, 220),
         ("Motorola RAZR V8", "", 240, 320),
         ("BlackBerry", "", 320, 240),
-        ("Apple iPhone 3&4", "", 320, 480),
+        ("Apple iPhone 3&amp;4", "", 320, 480),
         ("Samsung Galaxin SII", "", 320, 533),
         ("Apple iPhone 5", "", 320, 568),
         ("Samsung Galaxy S3/4", "", 360, 640),
