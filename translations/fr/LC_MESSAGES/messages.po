@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-05-17 18:06+0200\n"
+"POT-Creation-Date: 2014-05-17 19:42+0200\n"
 "PO-Revision-Date: 2014-04-26 17:01+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: fr <LL@li.org>\n"
@@ -49,46 +49,64 @@ msgstr "Lien vers ce test"
 msgid "Permalink"
 msgstr "Permalien"
 
-#: templates/index.html:45
+#: templates/index.html:35
+msgid "About"
+msgstr "À propos"
+
+#: templates/index.html:50
+msgid ""
+"Add this link into your browser bookmarks. You'll then be able to check "
+"any website in one click."
+msgstr ""
+"Ajoutez ce lien dans vos favoris. Vous pourrez ensuite tester "
+"n'importe quel site en un clic."
+
+#: templates/index.html:56
 msgid ""
 "Use this tool to check how a website renders under different viewport "
-"sizes"
+"sizes."
 msgstr ""
 "Utilisez cet outil pour vérifer le rendu d'un site web sur différentes "
-"résolutions d'écran"
+"résolutions d'écrans"
 
-#: templates/index.html:46
+#: templates/index.html:57
+msgid "Some websites block Iframes. Screen Sizer won't work for them."
+msgstr ""
+"Certains sites bloquent l'utilisation des iframes. Screen Sizer ne "
+"fonctionnera pas avec ces sites."
+
+#: templates/index.html:58
 msgid "Original idea by Quirktools Screenfly"
 msgstr "Idée originale par Quirktools Screenfly"
 
-#: templates/index.html:47
+#: templates/index.html:59
 msgid "Hand crafted using"
 msgstr "Fabrication artisanale avec"
 
-#: templates/index.html:48
+#: templates/index.html:60
 msgid "Grab the source code and run your own"
 msgstr "Code source"
 
-#: templates/index.html:56
+#: templates/index.html:69
 msgid "Enter a valid URL here"
 msgstr "Entrez un URL valide"
 
-#: templates/index.html:56
+#: templates/index.html:69
 #, fuzzy
 msgid ""
 "Enter a valid URL\n"
 "here"
 msgstr "Entrez un URL valide"
 
-#: templates/index.html:59
+#: templates/index.html:72
 msgid "width"
 msgstr "largeur"
 
-#: templates/index.html:62
+#: templates/index.html:75
 msgid "height"
 msgstr "hauteur"
 
-#: templates/index.html:64
+#: templates/index.html:77
 msgid "OK"
 msgstr "Valider"
 
