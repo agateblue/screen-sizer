@@ -32,6 +32,7 @@
                     <li id="rotate">{{ _("Rotate") }}</li>        
                     <li id="refresh">{{ _("Refresh") }}</li>  
                     <li><a href="" id="permalink" title='{{ _("Permalink to this test") }}'>{{ _("Permalink") }}</a></li>
+                    <li id="about"><span class="label" id="reveal-more">{{ _("About") }}</span></li>
                 </ul>
                 <form id="language">                        
                     <select id="languages">
@@ -41,11 +42,22 @@
                     {% endfor %}
                     </select> 
                 </form>
-                <div id="about">
-                    <p id="presentation">{{ _("Use this tool to check how a website renders under different viewport sizes") }}</p>    
-                    <p><a href="http://quirktools.com/screenfly/">{{ _('Original idea by Quirktools Screenfly') }}</a></p>
-                    <p>{{ _('Hand crafted using') }} <a href="http://flask.pocoo.org/">Flask</a>, <a href="http://jquery.com/">jQuery</a><p>
-                    <p><a href="https://github.com/EliotBerriot/screen-sizer">{{ _('Grab the source code and run your own') }}</a></p>
+                
+                <a id="bookmarklet"
+                    href="javascript:(function(){window.open('{{ bookmarklet_url }}'+'?url='+location.href);})();">{{ title }}
+                    
+                    </a>
+                <p class="help">{{ _("Add this link into your browser bookmarks. You'll then be able to screen-size any website in one click.") }}</p>
+                <div id="more">
+                    <div class="modal">
+                        <span id="close-more">
+                        x
+                    </span>
+                        <p id="presentation">{{ _("Use this tool to check how a website renders under different viewport sizes") }}</p>    
+                        <p><a href="http://quirktools.com/screenfly/">{{ _('Original idea by Quirktools Screenfly') }}</a></p>
+                        <p>{{ _('Hand crafted using') }} <a href="http://flask.pocoo.org/">Flask</a>, <a href="http://jquery.com/">jQuery</a><p>
+                        <p><a href="https://github.com/EliotBerriot/screen-sizer">{{ _('Grab the source code and run your own') }}</a></p>
+                    </div>
                 </div>
             </header>
             <section>
@@ -66,6 +78,7 @@ _('height') }}" title="{{ _('height') }}" value="{{ dimensions[1] }}"
                     
                 </div>
                 <iframe id="external-content" src="{{ iframe_url }}" width="{{ dimensions[0] }}" height="{{ dimensions[1] }}"></iframe>
+            
             </section>
         </div>
         {% for js in assets['js-after'] %}

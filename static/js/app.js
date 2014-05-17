@@ -103,6 +103,12 @@ $(document).ready(function (){
 
     });
 
+    $("#reveal-more").on('click', function(event) {
+        $("#more").show();
+    });
+    $("#close-more, #more").on('click', function(event) {
+        $("#more").hide();
+    });
     update_permalink();
 
 });

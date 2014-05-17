@@ -65,6 +65,7 @@ def index(locale):
         assets=settings.assets,
         languages=settings.LANGUAGES,
         current_locale=locale,
+        bookmarklet_url= url_for('index_no_locale', _external=True)
     )
 
 @app.route('/')

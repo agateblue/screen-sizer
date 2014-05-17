@@ -31,13 +31,29 @@ h1 {
 h1 a {
     text-decoration: none;
 }
-
-#about {
-    font-size: 0.7rem;
+#more {
     position: fixed;
-    bottom: 0px;
-    width: 7.5rem;
-    padding-left: 0.5rem;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    background-color: rgba(0,0,0,0.5);
+    z-index:999;
+}
+.modal {
+    position: fixed;
+    padding: 1rem;
+    background-color: white;
+    width: 20rem;
+    top: 50%;
+    left: 50%;
+    margin-top: -10rem;
+    margin-left: -10rem;
+    z-index:1000;
+}
+.modal #close-more {
+    float:right;
+    cursor: pointer;
 }
 #menu {
     margin: 0;
@@ -49,6 +65,10 @@ h1 a {
 #menu a {
     text-decoration: none;
     color:black;
+}
+#menu .label {
+    width:100%;
+    display:block;
 }
 #menu > li {
     font-size: 1.1rem;
@@ -81,7 +101,9 @@ h1 a {
     margin-left: 0;
     padding:0.5rem;
 }
-
+#rotate, #about {
+    margin-top: 1rem;
+}
 #languages {
     margin-left: 0.5rem;
 }
@@ -144,4 +166,28 @@ form input:focus {
 
 form .width, form .height {
     width: 3rem;
+}
+
+#bookmarklet {
+    font-size: 0.9rem;
+    border: 1px solid rgba(125,125,125,0.3);
+    border-radius: 5px;
+    display:block;
+    text-decoration: none;
+    text-align:center;
+    color: black;
+    max-width:7rem;
+    margin-left:0.5rem;
+    margin-top: 2rem;
+    padding:0.5rem
+    
+}
+.help {
+    padding:0.5rem;
+    font-size:0.9rem;
+    margin:0;
+}
+
+#more {
+    display:none;
 }
