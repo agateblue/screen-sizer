@@ -6,7 +6,7 @@
         <title>{{ title }}</title>
         <link rel="icon" href="static/img/favicon.ico" />
         {% for css in assets['css'] %}
-            <link href="static/{{ css }}" media="screen" rel="stylesheet" type="text/css" />
+            <link href="static/{{ css }}" media="screen" rel="stylesheet" type="text/css" />
         {% endfor %}
         {% for js in assets['js-before'] %}
             <script type="text/javascript" 
@@ -15,53 +15,58 @@
     </head>
     <body>
         <div class="wrapper">
-            <header>
-                <h1><a href="/">{{ title }}</a></h1>
-                    <ul id="menu">
-                        {% for category in sizes %}
-                            <li id="{{ category[0] }}" class="size-category">
-                                <span class="label">{{ _(category[0]) }}</span>
-                                <ul>
-                                {% for size in category[1] %}
-                                    <li class="size" data-size="{{ size[2] }} {{ size[3] }}">
-                                        <span class="size-name">{{ _(size[0]) }}</span><span class="dimensions">{{ size[2] }} x {{ size[3] }}</span>
-                                    </li>
-                                {% endfor %}
-                                </ul>
-                            </li>  
-                        {% endfor %}
-                        <li id="rotate">{{ _("Rotate") }}</li>        
-                        <li id="refresh">{{ _("Refresh") }}</li>
-                    </ul>
+            <header>               
+                <ul id="menu">
+                    {% for category in sizes %}
+                        <li id="{{ category[0] }}" class="size-category">
+                            <span class="label">{{ _(category[0]) }}</span>
+                            <ul>
+                            {% for size in category[1] %}
+                                <li class="size" data-size="{{ size[2] }} {{ size[3] }}">
+                                    <span class="size-name">{{ _(size[0]) }}</span><span class="dimensions">{{ size[2] }} x {{ size[3] }}</span>
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        </li>  
+                    {% endfor %}
+                    <li id="rotate">{{ _("Rotate") }}</li>        
+                    <li id="refresh">{{ _("Refresh") }}</li>                            
+                </ul>
+                <form id="language">                        
+                    <select id="languages">
+                    {% for locale, attributes in languages.items() %}
+                            <option value="{{ attributes['flag'] }}"
+                            {% if attributes['flag'] == current_locale %} selected="selected"{% endif %}>{{ attributes['name'].decode('utf-8') }}</option>
+                    {% endfor %}
+                    </select> 
+                </form>
+                <div id="info">
+                    <p id="presentation">{{ _("Use this tool to check how a website renders under different viewport sizes") }}</p>    
+                    <p><a href="http://quirktools.com/screenfly/">{{ _('Original idea by Quirktools Screenfly') }}</a></p>
+                    <p>{{ _('Hand crafted using') }} <a href="http://flask.pocoo.org/">Flask</a>, <a href="http://jquery.com/">jQuery</a><p>
+                    <p><a href="https://github.com/EliotBerriot/screen-sizer">{{ _('Grab the source code and run your own') }}</a></p>
+                </div>
+            </header>
+            <section>
+                <div class="header">
+                 <h1><a href="/">{{ title }}</a></h1>
                     <form id="website" method="post" action="">
-                        <input id="frame-url" size="35" type="text" placeholder="{{ _('Enter a valid URL here') }}" title='{{ _('Enter a valid URL here') }}' name="url" />
-                        <input id="custom-width" type="number" class="width" size="4" 
-                            placeholder="{{ _('width') }}" title="{{ _('width') }}" value="{{ dimensions[0] }}"/>
-                        <input type="number" class="height" placeholder="{{ _('height') }}" title="{{ _('height') }}" size="4" value="{{ dimensions[1] }}" />
+                        <input id="frame-url" size="35" type="text"
+placeholder="{{ _('Enter a valid URL here') }}" title='{{ _('Enter a valid URL
+here') }}' name="url" autofocus />
+                        <input id="custom-width" type="number" class="width" 
+                            placeholder="{{ _('width') }}" title="{{ _('width')
+}}" value="{{ dimensions[0] }}"/>
+                        <input type="number" class="height" placeholder="{{
+_('height') }}" title="{{ _('height') }}" value="{{ dimensions[1] }}"
+/>
                         <input type="submit" value="{{ _('OK') }}" />
                     </form>
-            </header>
-            <section>            
-                <p><a href="" id="permalink">{{ _("Permalink to this test") }}</a></p>
-            
+                    <a href="" id="permalink">{{ _("Permalink to this test") }}</a>
+                </div>
                 <iframe id="external-content" src="{{ iframe_url }}" width="{{ dimensions[0] }}" height="{{ dimensions[1] }}"></iframe>
             </section>
         </div>
-        <footer>
-
-                <p id="presentation">{{ _("Use this tool to check how a website renders under different viewport sizes") }}</p>    
-            <p><a href="http://quirktools.com/screenfly/">{{ _('Original idea by Quirktools Screenfly') }}</a></p>
-            <p>{{ _('Hand crafted using') }} <a href="http://flask.pocoo.org/">Flask</a>, <a href="http://jquery.com/">jQuery</a><p>
-            <p><a href="https://github.com/EliotBerriot/screen-sizer">{{ _('Grab the source code and run your own') }}</a></p>
-            <form id="language">                        
-                <select id="languages">
-                   {% for locale, attributes in languages.items() %}
-                        <option value="{{ attributes['flag'] }}"
-                        {% if attributes['flag'] == current_locale %} selected="selected"{% endif %}>{{ attributes['name'].decode('utf-8') }}</option>
-                   {% endfor %}
-                </select> 
-            </form>
-        </footer>
         {% for js in assets['js-after'] %}
             <script type="text/javascript" 
             src="static/{{ js }}" ></script>

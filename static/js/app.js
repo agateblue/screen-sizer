@@ -13,7 +13,8 @@ $(document).ready(function (){
         // catch clicks on devices and update iframe size accordingly
         event.preventDefault();
 
-        $(".size-category .active").toggleClass("active");
+        $(".size-category .active, .size-category.active").toggleClass("active");
+        $(this).closest(".size-category").toggleClass("active");
         $(this).toggleClass("active");
 
         var dimensions = $(this).attr('data-size').split(" ");
@@ -103,4 +104,5 @@ $(document).ready(function (){
     });
 
     update_permalink();
+
 });
