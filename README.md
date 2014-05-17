@@ -128,6 +128,10 @@ Edit `virtualenv_path` in Screen sizer settings:
 
 # Changelog
 
+## 0.2.2 (17 may 2014)
+
+- Fixed internal issue when a non-registered locale was provided via URL
+
 ## 0.2.1 (17 may 2014)
 
 - Fixed some HTML errors in template. Screen Sizer now pass [HTML Validation](http://validator.w3.org/check?uri=http%3A%2F%2Fscreensizer.eliotberriot.com%2F&charset=%28detect+automatically%29&doctype=Inline&group=0)

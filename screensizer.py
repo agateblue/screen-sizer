@@ -16,7 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with Screen Sizer.  If not, see <http://www.gnu.org/licenses/>.
 """
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, abort
 from flask.ext.babel import Babel, refresh
 import settings
 
@@ -41,9 +41,14 @@ def get_locale():
     return locale
 
 @app.route('/<locale>', methods=['GET', 'POST'])
-def index(locale):   
-
-    # get iframe URL from query string    
+def index(locale): 
+    # check if locale is registered in settings
+    try: 
+        settings.LANGUAGES[locale]
+    except KeyError:
+        abort(404)
+    # get iframe URL from query string 
+    
     iframe_url = request.args.get('url', settings.default_iframe_url)
     refresh()
     try:
