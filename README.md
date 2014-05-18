@@ -131,6 +131,11 @@ Edit `virtualenv_path` in Screen sizer settings:
 
 # Changelog
 
+## 0.3.1 (18 may 2014)
+
+- Fixed typo in README
+- Fixed HTML error in template
+
 ## 0.3 (18 may 2014)
 
 - Small javascript refactoring
