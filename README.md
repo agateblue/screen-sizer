@@ -134,7 +134,7 @@ Edit `virtualenv_path` in Screen sizer settings:
 ## 0.3 (18 may 2014)
 
 - Small javascript refactoring
-- Added keyboard shorcut (inpired by [TestSize](http://testsize.com/):
+- Added keyboard shorcut (inpired by [TestSize](http://testsize.com/)):
     
     - for zooming-in (+) and out (-)
     - for iterating through sizes registered under "Frequent" menu (spacebar and ctrl+spacebar for reverse)
