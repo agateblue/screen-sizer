@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-05-17 19:42+0200\n"
+"POT-Creation-Date: 2014-05-18 20:58+0200\n"
 "PO-Revision-Date: 2014-04-26 17:01+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: fr <LL@li.org>\n"
@@ -17,51 +17,111 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: sizes.py:9
+#: sizes.py:27
 msgid "Desktop"
 msgstr "Bureau"
 
-#: sizes.py:25
+#: sizes.py:43
 msgid "Tablet"
 msgstr "Tablette"
 
-#: sizes.py:39
+#: sizes.py:57
 msgid "Mobile"
 msgstr "Téléphone"
 
-#: sizes.py:53
+#: sizes.py:71
 msgid "TV"
 msgstr "TV"
 
-#: templates/index.html:32
+#: templates/index.html:20
+msgid "Sizes"
+msgstr "Tailles"
+
+#: templates/index.html:33
+msgid "Frequent"
+msgstr "Fréquentes"
+
+#: templates/index.html:42
+msgid "Actions"
+msgstr "Actions"
+
+#: templates/index.html:43 templates/index.html:83
 msgid "Rotate"
 msgstr "Tourner"
 
-#: templates/index.html:33
+#: templates/index.html:44
 msgid "Refresh"
 msgstr "Rafraîchir"
 
-#: templates/index.html:34
+#: templates/index.html:45 templates/index.html:91
+msgid "Fullscreen"
+msgstr "Plein écran"
+
+#: templates/index.html:47
 msgid "Permalink to this test"
 msgstr "Lien vers ce test"
 
-#: templates/index.html:34
+#: templates/index.html:47 templates/index.html:87
 msgid "Permalink"
 msgstr "Permalien"
 
-#: templates/index.html:35
+#: templates/index.html:50
+msgid "More..."
+msgstr "Plus..."
+
+#: templates/index.html:51
 msgid "About"
 msgstr "À propos"
 
-#: templates/index.html:50
+#: templates/index.html:60
+msgid "Bookmarklet"
+msgstr "Bookmarklet"
+
+#: templates/index.html:65
 msgid ""
 "Add this link into your browser bookmarks. You'll then be able to check "
 "any website in one click."
 msgstr ""
-"Ajoutez ce lien dans vos favoris. Vous pourrez ensuite tester "
-"n'importe quel site en un clic."
+"Ajoutez ce lien dans vos favoris. Vous pourrez ensuite tester n'importe "
+"quel site en un clic."
 
-#: templates/index.html:56
+#: templates/index.html:66
+msgid "Keyboard shortcuts"
+msgstr "Raccourcis clavier"
+
+#: templates/index.html:70
+msgid "Key"
+msgstr "Touche"
+
+#: templates/index.html:71
+msgid "Action"
+msgstr "Action"
+
+#: templates/index.html:75
+msgid "Zoom-in"
+msgstr "Agrandir"
+
+#: templates/index.html:79
+msgid "Zoom-out"
+msgstr "Réduire"
+
+#: templates/index.html:94
+msgid "Spacebar"
+msgstr "Espace"
+
+#: templates/index.html:95
+msgid "Iterate through frequent sizes, from smallest to biggest"
+msgstr "Parcourir les tailles fréquentes, de la plus petite à la plus grande"
+
+#: templates/index.html:98
+msgid "Ctrl + Spacebar"
+msgstr "Ctrl + Espace"
+
+#: templates/index.html:99
+msgid "Iterate through frequent sizes, from biggest to smallest"
+msgstr "Parcourir les tailles fréquentes, de la grande à la plus petite"
+
+#: templates/index.html:113
 msgid ""
 "Use this tool to check how a website renders under different viewport "
 "sizes."
@@ -69,44 +129,48 @@ msgstr ""
 "Utilisez cet outil pour vérifer le rendu d'un site web sur différentes "
 "résolutions d'écrans"
 
-#: templates/index.html:57
+#: templates/index.html:114
 msgid "Some websites block Iframes. Screen Sizer won't work for them."
 msgstr ""
 "Certains sites bloquent l'utilisation des iframes. Screen Sizer ne "
 "fonctionnera pas avec ces sites."
 
-#: templates/index.html:58
+#: templates/index.html:115
 msgid "Original idea by Quirktools Screenfly"
 msgstr "Idée originale par Quirktools Screenfly"
 
-#: templates/index.html:59
+#: templates/index.html:116
 msgid "Hand crafted using"
 msgstr "Fabrication artisanale avec"
 
-#: templates/index.html:60
+#: templates/index.html:117
 msgid "Grab the source code and run your own"
 msgstr "Code source"
 
-#: templates/index.html:69
+#: templates/index.html:136
 msgid "Enter a valid URL here"
 msgstr "Entrez un URL valide"
 
-#: templates/index.html:69
+#: templates/index.html:136
 #, fuzzy
 msgid ""
 "Enter a valid URL\n"
 "here"
 msgstr "Entrez un URL valide"
 
-#: templates/index.html:72
+#: templates/index.html:139
 msgid "width"
 msgstr "largeur"
 
-#: templates/index.html:75
+#: templates/index.html:142
 msgid "height"
 msgstr "hauteur"
 
-#: templates/index.html:77
+#: templates/index.html:144
 msgid "OK"
 msgstr "Valider"
+
+#: templates/index.html:149
+msgid "Exit full-screen mode"
+msgstr "Sortir du mode plein écran"
 

@@ -67,7 +67,6 @@ h1 a {
     margin: 0;
     list-style-type: none;
     padding: 0;
-    margin-bottom: 1rem;
 }
 
 #menu a {
@@ -78,12 +77,20 @@ h1 a {
     width:100%;
     display:block;
 }
-#menu > li {
-    font-size: 1.1rem;
+#menu > li:not(.separator) {
+    font-size: 1rem;
     margin-left: 0;
     position:relative;
     cursor: pointer;
     padding: 0.5rem;
+}
+#menu .separator {
+    border-bottom: 1px solid rgba(125,125,125,0.3);
+    width: 100%;
+    min-height:1px;
+    padding: 0.25rem 0.5rem;
+    margin-top: 1rem;
+    font-weight: bold;
 }
 
 #menu > li > ul {
@@ -95,11 +102,11 @@ h1 a {
     font-size: 0.9rem;
     border: 1px solid rgba(125,125,125,0.3);
 }
-#menu > li:hover {
+#menu > li:not(.separator):hover {
     background-color: rgba(125,125,125,0.3);
     
 }
-#menu > li:hover > ul, #menu > li:focus > ul {
+#menu > li:not(.separator):hover > ul, #menu > li:not(.separator):focus > ul {
     display: block;
     position: absolute;
     top: 0;
@@ -114,7 +121,7 @@ h1 a {
     float: none;
 }
 
-#rotate, #about {
+#more {
     margin-top: 1rem;
 }
 #languages {
@@ -131,7 +138,7 @@ h1 a {
     background-color: rgba(125,125,125,0.3);
     cursor: pointer;
 }
-.size-category .size.active, .size-category.active {
+.size-category .size.current, .size-category.current {
     background-color: rgba(125,125,125,0.3);
 }
 
@@ -165,11 +172,14 @@ section .header {
     border-bottom: 1px solid rgba(125,125,125,0.3);
 }
 
+
 #website {
     display: inline-block;
     margin-right: 1rem;
 }
-
+.iframe-wrapper .close-fullscreen {
+    display: none;
+}
 .iframe-wrapper.full {
     text-align:center;
     background-color:white;
@@ -178,7 +188,11 @@ section .header {
     top: 0;
     left:0;    
 }
-
+.iframe-wrapper.full .close-fullscreen {
+    display: block;
+    margin-bottom: 1rem;
+    text-align: left;
+}
 section > p {
     text-align: center;
 }
@@ -186,12 +200,12 @@ section > p {
     display: block;
 }
 
-form input {
+input {
     border: 1px solid rgba(125,125,125,0.3);
     padding: 0.25rem;
 }
 
-form input:focus {
+input:focus {
     border: 1px solid black;
 }
 

@@ -17,6 +17,7 @@
         <div class="wrapper">
             <header>  
                 <ul id="menu">
+                    <li class="separator">{{ _("Sizes") }}</li>
                     {% for category in sizes %}
                         <li id="{{ category[0] }}" class="size-category">
                             <span class="label">{{ _(category[0]) }}</span>
@@ -38,14 +39,17 @@
                         {% endfor %}
                         </ul>
                     </li>
+                    <li class="separator">{{ _("Actions") }}</li>
                     <li id="rotate">{{ _("Rotate") }}</li>        
-                    <li id="refresh">{{ _("Refresh") }}</li>  
+                    <li id="refresh">{{ _("Refresh") }}</li> 
+                    <li id="fullscreen">{{ _("Fullscreen") }}</li>
                     <li>
                         <a href="" id="permalink" title='{{ _("Permalink to this test") }}'>{{ _("Permalink") }}</a>
                         <input id="copy-permalink" size="35" type="text" name="url" readonly />
                     </li>
                     <li id="more" class="modal-open" data-modal-id="more-modal"><span class="label" id="reveal-more">{{ _("More...") }}</span></li>
                     <li id="about" class="modal-open" data-modal-id="about-modal"><span class="label" id="reveal-more">{{ _("About") }}</span></li>
+                
                 </ul>
                 <div id="more-modal" class="modal">
                     <div class="modal-bg"></div>
@@ -79,8 +83,24 @@
                                     <td>{{ _("Rotate") }}</td>
                                 </tr>
                                 <tr>
+                                    <td>P</td>
+                                    <td>{{ _("Permalink") }}</td>
+                                </tr>
+                                <tr>
                                     <td>F</td>
-                                    <td>{{ _("Full screen") }}</td>
+                                    <td>{{ _("Fullscreen") }}</td>
+                                </tr>
+                                <tr>
+                                    <td>W</td>
+                                    <td>{{ _("Focus URL input") }}</td>
+                                </tr>
+                                <tr>
+                                    <td>X</td>
+                                    <td>{{ _("Focus width input") }}</td>
+                                </tr>
+                                <tr>
+                                    <td>C</td>
+                                    <td>{{ _("Focus height input") }}</td>
                                 </tr>
                                 <tr>
                                     <td>{{ _("Spacebar") }}</td>
@@ -130,7 +150,7 @@ here') }}' name="url" />
                         <input id="custom-width" type="number" class="width" 
                             placeholder="{{ _('width') }}" title="{{ _('width')
 }}" value="{{ dimensions[0] }}"/>
-                        <input type="number" class="height" placeholder="{{
+                        <input id="custom-height" type="number" class="height" placeholder="{{
 _('height') }}" title="{{ _('height') }}" value="{{ dimensions[1] }}"
 />
                         <input type="submit" value="{{ _('OK') }}" />
@@ -138,6 +158,7 @@ _('height') }}" title="{{ _('height') }}" value="{{ dimensions[1] }}"
                     
                 </div>
                 <div class="iframe-wrapper">
+                    <a href="" class="close-fullscreen">{{ _('Exit full-screen mode') }}</a>
                     <iframe id="external-content" src="{{ iframe_url }}" width="{{ dimensions[0] }}" height="{{ dimensions[1] }}"></iframe>
                 </div>
             </section>

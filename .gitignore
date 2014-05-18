@@ -5,3 +5,6 @@
 .idea/*
 
 settings.py
+
+
+*.kate-swp

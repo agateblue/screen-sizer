@@ -10,8 +10,10 @@ $(document).ready(function (){
         time:    new Date()
     });
     
-    $(form).on("sizeChanged", function(event){
-        $(".size-category .active, .size-category.active, #frequent.active").toggleClass("active");
+    $(form).on("sizeChanged", function(event, reset_current){
+        if (reset_current !== false ) {
+            $(".size-category .current, .size-category.current, #frequent.current").toggleClass("current");        
+        }
         update_permalink();
         update_iframe_size();
     });
@@ -61,28 +63,23 @@ $(document).ready(function (){
     }
     
     function next_frequent(next_index) {
-        var current = $(frequent).find('.active');            
+        var current = $(frequent).find('.current');            
             
         
         if (next_index === 1) {
             if ( current.length === 0 || $(frequent).find("li").index(current)+1 === $(frequent).find("li").length) {
-                console.log("next first");
                 var next = $(frequent).find("li").first();            
             }
             else {            
                 var next = current.next(); 
-                console.log("next");
             }
         }
         else {
-            console.log($(frequent).find("li").index(current)-1, $(frequent).find("li").length);
             if ( current.length <= 0 || $(frequent).find("li").index(current)-1 === -1) {
-                console.log("previous last");
                 var next = $(frequent).find("li").last();            
             }
             else {            
                 var next = current.prev(); 
-                console.log("previous");
             }
         }
         
@@ -93,9 +90,9 @@ $(document).ready(function (){
         update_size(width, height);
         
         $(form).trigger('sizeChanged');
-        $(frequent).addClass('active');
+        $(frequent).addClass('current');
         
-        $(next).toggleClass("active");
+        $(next).toggleClass("current");
         
     }
     
@@ -103,7 +100,7 @@ $(document).ready(function (){
         var height = $( form ).find('.width').val();
         var width = $( form ).find('.height').val();
         update_size(width, height);
-        $(form).trigger('sizeChanged');
+        $(form).trigger('sizeChanged', [false,]);
     }
     
     function toggle_fullscreen() {
@@ -124,6 +121,18 @@ $(document).ready(function (){
         }
     }
     
+    function change_website_url() {
+        $("#frame-url").select();
+    }
+    
+    function change_width() {
+        $("#custom-width" ).select();
+    }
+    
+    function change_height() {
+        $("#custom-height" ).select();
+    }
+    
     $("body").keydown(function(e){
         var tag = e.target.tagName.toLowerCase();
         if ( tag != 'input' && tag != 'textarea') {
@@ -134,6 +143,21 @@ $(document).ready(function (){
             if (e.which == 80) 
             {
                 toggle_permalink();
+            };
+            if (e.which == 87) 
+            {   
+                e.preventDefault();
+                change_website_url();
+            };
+            if (e.which == 88) 
+            {
+                e.preventDefault();
+                change_width();
+            };
+            if (e.which == 67) 
+            {
+                e.preventDefault();
+                change_height();
             };
             if (e.which == 109) 
             {
@@ -179,15 +203,15 @@ $(document).ready(function (){
         
         $(form).trigger('sizeChanged');
         
-        $(this).closest(".size-category").toggleClass("active");
-        $(this).toggleClass("active");
+        $(this).closest(".size-category").toggleClass("current");
+        $(this).toggleClass("current");
     });
 
 
     $( form ).submit(function( event ) {
         // use custom size form to update iframe dimensions
         event.preventDefault();
-        $(".size-category .active").toggleClass("active");
+        $(".size-category .current").toggleClass("current");
         var url = get_url();
         var width = $(this).find('.width').val();
         var height = $(this).find('.height').val();
@@ -218,6 +242,12 @@ $(document).ready(function (){
         window.location = "/" + locale + url.substring(url.indexOf("?"))
     });
     
+    $("#permalink").on('click', function(event){
+        
+        toggle_permalink();
+        event.preventDefault();
+    });
+    
     $("#rotate").on('click', function(event){
         rotate();
     }); 
@@ -229,7 +259,6 @@ $(document).ready(function (){
     });
 
     $(".modal-open").on('click', function(event) {
-        console.log('open modal', $(this).attr('data-modal-id'));
         var modal =  $("#"+$(this).attr('data-modal-id'));
         modal.toggleClass("active");
         
@@ -239,6 +268,21 @@ $(document).ready(function (){
         $(".modal.active").toggleClass('active');
     });    
 
+    $(".close-fullscreen, #fullscreen").on('click', function(event) {
+        toggle_fullscreen();
+        event.preventDefault();
+    });
+    $(document).mouseup(function (event)
+    {
+        var container = $(".active");
+
+        if (!container.is(event.target) // if the target of the click isn't the container...
+            && container.has(event.target).length === 0) // ... nor a descendant of the container
+        {
+            container.toggleClass('active');
+        }
+    });
+    
     // init 
     
         // set from URL from iframe src attribute
