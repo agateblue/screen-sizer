@@ -1,17 +1,17 @@
 Screen Sizer is a web tool designed to help you during your reponsive webdesign
 testing process. By entering a URL, you can display a website in an <iframe> and
 resize it on the fly. This tool is *heavily* inspired from [Quirktools
-Screenfly](http://quirktools.com/screenfly). 
+Screenfly](http://quirktools.com/screenfly) and [TestSize](http://testsize.com/). 
 
-WARNING : Screen Sizer do not replace cross-browser testing.
+WARNING : Screen Sizer do not replace cross-browser testing. Also, some websites block the usage of Iframe (on top of which Screen Sizer rely) and won't work with Screen Sizer.
 
 A demo instance is available at
 [http://screensizer.eliotberriot.com](http://screensizer.eliotberriot.com).
 
 # Why make a clone ?
 
-Having control on services I use seems very important to me, especially when it's work related. Screenfly is a great tool, but there is absolutely no warranty it'll be available tomorrow.
-I also wanted some features that were not available in Screenfly.
+Having control on services I use seems very important to me, especially when it's work related. Screenfly and TestSize are great tools, but there is absolutely no warranty they'll be available tomorrow.
+I also wanted some features that were not available in these tools.
 
 # Features
 
@@ -21,6 +21,9 @@ I also wanted some features that were not available in Screenfly.
 - Multilingual (see
 [Available translations](#Available translations) for a list of available
 languages)
+- Full screen mode
+- Bookmarklet for instant testing when viewing a website
+- Keyboard shortcuts for faster usage
 - Free as in free beer and free speech (licenced under GPLv3)
 - Runable locally, on your very own computer
 - Can be deployed on a webserver, for public access over the internet
@@ -128,15 +131,17 @@ Edit `virtualenv_path` in Screen sizer settings:
 
 # Changelog
 
-## 0.3 (17 may 2014)
+## 0.3 (18 may 2014)
 
 - Small javascript refactoring
 - Added keyboard shorcut (inpired by [TestSize](http://testsize.com/):
+    
     - for zooming-in (+) and out (-)
     - for iterating through sizes registered under "Frequent" menu (spacebar and ctrl+spacebar for reverse)
     - for rotation (R)
     - for full-screen (F)
     - for targeting url input (W), width input (X) and height input (C)
+    
 - Added "More..." modal for information regarding bookmarklet and keyboard shortcuts
 
 ## 0.2.2 (17 may 2014)
