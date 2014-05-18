@@ -52,11 +52,10 @@ h1 a {
     padding: 1rem;
     background-color: white;
     width: 95%;
-    max-width: 40rem;
-    top: 50%;
+    max-width: 50rem;
+    top: 2rem;
     left: 50%;
-    margin-top: -15rem;
-    margin-left: -20rem;
+    margin-left: -25rem;
     z-index:1000;
 }
 .modal .modal-close {
@@ -123,6 +122,18 @@ h1 a {
 
 #more {
     margin-top: 1rem;
+}
+
+.shortcuts {
+    border-collapse:collapse;
+    text-align:left;
+}
+.shortcuts tr {
+    border: 1px solid rgba(125,125,125,0.3);
+}
+.shortcuts td, .shortcuts th {
+    border-left: 1px solid rgba(125,125,125,0.3);
+    padding: 0.25rem 0.5rem;
 }
 #languages {
     margin-left: 0.5rem;
@@ -217,19 +228,15 @@ form .width, form .height {
     font-size: 0.9rem;
     border: 1px solid rgba(125,125,125,0.3);
     border-radius: 5px;
-    display:block;
     text-decoration: none;
     text-align:center;
     color: black;
     max-width:7rem;
-    margin-left:0.5rem;
-    margin-top: 2rem;
-    padding:0.5rem
+    padding:0.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    text-align: center;
     
 }
-.help {
-    padding:0.5rem;
-    font-size:0.9rem;
-    margin:0;
-}
+
 

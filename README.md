@@ -136,6 +136,8 @@ Edit `virtualenv_path` in Screen sizer settings:
     - for iterating through sizes registered under "Frequent" menu (spacebar and ctrl+spacebar for reverse)
     - for rotation (R)
     - for full-screen (F)
+    - for targeting url input (W), width input (X) and height input (C)
+- Added "More..." modal for information regarding bookmarklet and keyboard shortcuts
 
 ## 0.2.2 (17 may 2014)
 
