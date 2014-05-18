@@ -59,15 +59,32 @@ $(document).ready(function (){
         $(form).trigger('sizeChanged');
     }
     
-    function next_frequent() {
+    function next_frequent(next_index) {
+        var current = $(frequent).find('.active');            
+            
         
-        var current = $(frequent).find('.active');        
-        if (current.length === 0 || $(frequent).find("li").index(current)+1 === $(frequent).find("li").length) {
-            var next = $(frequent).find("li").first();            
+        if (next_index === 1) {
+            if ( current.length === 0 || $(frequent).find("li").index(current)+1 === $(frequent).find("li").length) {
+                console.log("next first");
+                var next = $(frequent).find("li").first();            
+            }
+            else {            
+                var next = current.next(); 
+                console.log("next");
+            }
         }
-        else {            
-            var next = current.next();            
+        else {
+            console.log($(frequent).find("li").index(current)-1, $(frequent).find("li").length);
+            if ( current.length <= 0 || $(frequent).find("li").index(current)-1 === -1) {
+                console.log("previous last");
+                var next = $(frequent).find("li").last();            
+            }
+            else {            
+                var next = current.prev(); 
+                console.log("previous");
+            }
         }
+        
         var dimensions = $(next).attr('data-size').split(" ");
         var width = parseInt(dimensions[0], 10);
         var height = parseInt(dimensions[1], 10);        
@@ -87,22 +104,41 @@ $(document).ready(function (){
         update_size(width, height);
         $(form).trigger('sizeChanged');
     }
-    $("body").keypress(function(e){
+    
+    function toggle_fullscreen() {
+        $("body .wrapper header, .header").toggle();
+        $(".iframe-wrapper").toggleClass("full");
+    }
+    
+    $("body").keydown(function(e){
+        console.log("keydown");
         var tag = e.target.tagName.toLowerCase();
         if ( tag != 'input' && tag != 'textarea') {
-            if (e.which == 45) 
+            if (e.which == 70) 
+            {
+                toggle_fullscreen();
+            };
+            if (e.which == 109) 
             {
                 zoom_out();
             };
-            if (e.which == 43) 
+            if (e.which == 107) 
             {
                 zoom_in();
             };   
-            if (e.which == 32) {
-                next_frequent();
-            }
-            if (e.which == 114) {
+            if (e.which == 82) {
                 rotate();
+            }
+            if (e.which == 32 && e.ctrlKey) {
+                e.preventDefault();
+                next_frequent(-1);
+            }
+            else  if (e.which == 32) {
+                e.preventDefault();
+                next_frequent(1);
+            }
+            else {
+                return;
             }
         }           
     });
@@ -175,12 +211,15 @@ $(document).ready(function (){
         iframe.attr('src', iframe.attr('src'));
     });
 
-    $("#reveal-more").on('click', function(event) {
-        $("#more").show();
+    $(".modal-open").on('click', function(event) {
+        console.log('open modal', $(this).attr('data-modal-id'));
+        var modal =  $("#"+$(this).attr('data-modal-id'));
+        modal.toggleClass("active");
+        
     });
     
-    $("#close-more, #more").on('click', function(event) {
-        $("#more").hide();
+    $(".close-modal, .modal").on('click', function(event) {
+        $(".modal.active").toggleClass('active');
     });    
 
     // init 

@@ -31,7 +31,14 @@ h1 {
 h1 a {
     text-decoration: none;
 }
-#more {
+
+.modal {
+    display:none;
+}
+.modal.active {
+    display:block
+}
+.modal {
     position: fixed;
     top:0;
     left:0;
@@ -40,7 +47,7 @@ h1 a {
     background-color: rgba(0,0,0,0.5);
     z-index:999;
 }
-.modal {
+.modal .window {
     position: fixed;
     padding: 1rem;
     background-color: white;
@@ -51,7 +58,7 @@ h1 a {
     margin-left: -10rem;
     z-index:1000;
 }
-.modal #close-more {
+.modal .modal-close {
     float:right;
     cursor: pointer;
 }
@@ -153,6 +160,15 @@ section .header {
     margin-right: 1rem;
 }
 
+.iframe-wrapper.full {
+    text-align:center;
+    background-color:white;
+    padding:1rem;
+    position: absolute;
+    top: 0;
+    left:0;    
+}
+
 section > p {
     text-align: center;
 }
@@ -193,6 +209,3 @@ form .width, form .height {
     margin:0;
 }
 
-#more {
-    display:none;
-}

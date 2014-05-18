@@ -41,8 +41,22 @@
                     <li id="rotate">{{ _("Rotate") }}</li>        
                     <li id="refresh">{{ _("Refresh") }}</li>  
                     <li><a href="" id="permalink" title='{{ _("Permalink to this test") }}'>{{ _("Permalink") }}</a></li>
-                    <li id="about"><span class="label" id="reveal-more">{{ _("About") }}</span></li>
+                    <li id="about" class="modal-open" data-modal-id="about-modal"><span class="label" id="reveal-more">{{ _("About") }}</span></li>
                 </ul>
+                
+                <div id="about-modal" class="modal">
+                    <div class="window">
+                        <span class="modal-close">
+                        x
+                    </span>
+                        <p id="presentation">{{ _("Use this tool to check how a website renders under different viewport sizes.") }}</p>    
+                        <p class="warning">{{ _("Some websites block Iframes. Screen Sizer won't work for them.") }}</p>   
+                        <p><a href="http://quirktools.com/screenfly/">{{ _('Original idea by Quirktools Screenfly') }}</a></p>
+                        <p>{{ _('Hand crafted using') }} <a href="http://flask.pocoo.org/">Flask</a>, <a href="http://jquery.com/">jQuery</a><p>
+                        <p><a href="https://github.com/EliotBerriot/screen-sizer">{{ _('Grab the source code and run your own') }}</a></p>
+                    </div>
+                </div>
+                
                 <form id="language">                        
                     <select id="languages">
                     {% for locale, attributes in languages.items() %}
@@ -57,18 +71,7 @@
                     
                     </a>
                 <p class="help">{{ _("Add this link into your browser bookmarks. You'll then be able to check any website in one click.") }}</p>
-                <div id="more">
-                    <div class="modal">
-                        <span id="close-more">
-                        x
-                    </span>
-                        <p id="presentation">{{ _("Use this tool to check how a website renders under different viewport sizes.") }}</p>    
-                        <p class="warning">{{ _("Some websites block Iframes. Screen Sizer won't work for them.") }}</p>   
-                        <p><a href="http://quirktools.com/screenfly/">{{ _('Original idea by Quirktools Screenfly') }}</a></p>
-                        <p>{{ _('Hand crafted using') }} <a href="http://flask.pocoo.org/">Flask</a>, <a href="http://jquery.com/">jQuery</a><p>
-                        <p><a href="https://github.com/EliotBerriot/screen-sizer">{{ _('Grab the source code and run your own') }}</a></p>
-                    </div>
-                </div>
+                
             </header>
             <section>
                 <div class="header">
@@ -76,7 +79,7 @@
                     <form id="website" method="post" action=".">
                         <input id="frame-url" size="35" type="text"
 placeholder="{{ _('Enter a valid URL here') }}" title='{{ _('Enter a valid URL
-here') }}' name="url" autofocus />
+here') }}' name="url" />
                         <input id="custom-width" type="number" class="width" 
                             placeholder="{{ _('width') }}" title="{{ _('width')
 }}" value="{{ dimensions[0] }}"/>
@@ -87,8 +90,9 @@ _('height') }}" title="{{ _('height') }}" value="{{ dimensions[1] }}"
                     </form>
                     
                 </div>
-                <iframe id="external-content" src="{{ iframe_url }}" width="{{ dimensions[0] }}" height="{{ dimensions[1] }}"></iframe>
-            
+                <div class="iframe-wrapper">
+                    <iframe id="external-content" src="{{ iframe_url }}" width="{{ dimensions[0] }}" height="{{ dimensions[1] }}"></iframe>
+                </div>
             </section>
         </div>
         {% for js in assets['js-after'] %}
