@@ -134,7 +134,8 @@ Edit `virtualenv_path` in Screen sizer settings:
 - Added keyboard shorcut (inpired by [TestSize](http://testsize.com/):
     - for zooming-in (+) and out (-)
     - for iterating through sizes registered under "Frequent" menu (spacebar and ctrl+spacebar for reverse)
-    - for rotation (r)
+    - for rotation (R)
+    - for full-screen (F)
 
 ## 0.2.2 (17 may 2014)
 

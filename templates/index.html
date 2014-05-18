@@ -40,11 +40,64 @@
                     </li>
                     <li id="rotate">{{ _("Rotate") }}</li>        
                     <li id="refresh">{{ _("Refresh") }}</li>  
-                    <li><a href="" id="permalink" title='{{ _("Permalink to this test") }}'>{{ _("Permalink") }}</a></li>
+                    <li>
+                        <a href="" id="permalink" title='{{ _("Permalink to this test") }}'>{{ _("Permalink") }}</a>
+                        <input id="copy-permalink" size="35" type="text" name="url" readonly />
+                    </li>
+                    <li id="more" class="modal-open" data-modal-id="more-modal"><span class="label" id="reveal-more">{{ _("More...") }}</span></li>
                     <li id="about" class="modal-open" data-modal-id="about-modal"><span class="label" id="reveal-more">{{ _("About") }}</span></li>
                 </ul>
-                
+                <div id="more-modal" class="modal">
+                    <div class="modal-bg"></div>
+                    <div class="window">
+                        <span class="modal-close">
+                        x
+                    </span>
+                        <h2>{{ _("Bookmarklet") }}</h2>
+                        <a id="bookmarklet"
+                            href="javascript:(function(){window.open('{{ bookmarklet_url }}'+'?url='+location.href);})();">{{ title }}
+                            
+                            </a>
+                        <p class="help">{{ _("Add this link into your browser bookmarks. You'll then be able to check any website in one click.") }}</p>
+                        <h2>{{ _("Keyboard shortcuts") }}</h2>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>{{ _("Key") }}</th>
+                                    <th>{{ _("Action") }}</th>
+                                </tr>
+                                <tr>
+                                    <td>+</td>
+                                    <td>{{ _("Zoom-in") }}</td>
+                                </tr>
+                                <tr>
+                                    <td>-</td>
+                                    <td>{{ _("Zoom-out") }}</td>
+                                </tr>
+                                <tr>
+                                    <td>R</td>
+                                    <td>{{ _("Rotate") }}</td>
+                                </tr>
+                                <tr>
+                                    <td>F</td>
+                                    <td>{{ _("Full screen") }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ _("Spacebar") }}</td>
+                                    <td>{{ _("Iterate through frequent sizes, from smallest to biggest") }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ _("Ctrl + Spacebar") }}</td>
+                                    <td>{{ _("Iterate through frequent sizes, from biggest to smallest") }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                            
+                        
+                    </div>
+                </div>
                 <div id="about-modal" class="modal">
+                    <div class="modal-bg"></div>
                     <div class="window">
                         <span class="modal-close">
                         x
@@ -65,12 +118,6 @@
                     {% endfor %}
                     </select> 
                 </form>
-                
-                <a id="bookmarklet"
-                    href="javascript:(function(){window.open('{{ bookmarklet_url }}'+'?url='+location.href);})();">{{ title }}
-                    
-                    </a>
-                <p class="help">{{ _("Add this link into your browser bookmarks. You'll then be able to check any website in one click.") }}</p>
                 
             </header>
             <section>

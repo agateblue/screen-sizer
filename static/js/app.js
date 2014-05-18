@@ -41,12 +41,13 @@ $(document).ready(function (){
     
     function update_permalink(){
         // update the permalink with new settings (url, size)
-        var url = window.location.pathname;
+        var url = location.origin + window.location.pathname;
         var iframe_url = get_url();
         var width = $( form ).find('.width').val();
         var height = $( form ).find('.height').val();
         url = url + "?url=" + iframe_url + "&width=" + width + "&height=" + height;
         $(permalink).attr("href", url);
+        $("#copy-permalink").val(url);
     }
     
     function zoom_in() {
@@ -110,13 +111,29 @@ $(document).ready(function (){
         $(".iframe-wrapper").toggleClass("full");
     }
     
+    function toggle_permalink() {
+        var sel = "#copy-permalink";
+        if ($(sel+".active").length === 1){
+            var input = $(sel+".active");
+            input.toggleClass('active');
+        }
+        else {            
+            var input = $(sel);
+            input.toggleClass('active');
+            input.select();
+        }
+    }
+    
     $("body").keydown(function(e){
-        console.log("keydown");
         var tag = e.target.tagName.toLowerCase();
         if ( tag != 'input' && tag != 'textarea') {
             if (e.which == 70) 
             {
                 toggle_fullscreen();
+            };
+            if (e.which == 80) 
+            {
+                toggle_permalink();
             };
             if (e.which == 109) 
             {
@@ -218,7 +235,7 @@ $(document).ready(function (){
         
     });
     
-    $(".close-modal, .modal").on('click', function(event) {
+    $(".modal-close, .modal-bg").on('click', function(event) {
         $(".modal.active").toggleClass('active');
     });    
 
