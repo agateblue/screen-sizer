@@ -47,3 +47,6 @@ debug = False
 
 # Edit this for production
 virtualenv_path = "/home/user/.virtualenvs/screen-sizer"
+
+
+screenshot_app = "/path/to/pageres"

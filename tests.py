@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 import unittest
 import screensizer
 import os
-
+import settings
 
 class ScreenSizerTestCase(unittest.TestCase):
 
@@ -18,7 +18,7 @@ class ScreenSizerTestCase(unittest.TestCase):
 
         # check default iframe url is used correctly when ?url=xxx not provided
         response = self.app.get('/', follow_redirects=True)
-        
+
         self.assertEqual('src="{0}"'.format(screensizer.settings.default_iframe_url) in response.data.decode('utf-8'), True)
 
         # check ?url=xxx is passed correctly when provided
@@ -45,6 +45,21 @@ class ScreenSizerTestCase(unittest.TestCase):
         self.assertIn('src="{0}"'.format(url), response.data.decode('utf-8'))
         self.assertIn('width="{0}"'.format(width), response.data.decode('utf-8'))
         self.assertIn('height="{0}"'.format(height), response.data.decode('utf-8'))
+
+
+    def test_can_disable_screenshot(self):
+        old = settings.screenshot_app
+        settings.screenshot_app = None
+        response = self.app.get('/screenshot?url=http://example.com&with=1280&height=600', follow_redirects=True)        
+        self.assertEqual(response.status_code, 404)
+        settings.screenshot_app = old
+
+    def test_can_get_uuid_of_screenshot(self):
+        response = self.app.get('/screenshot?url=http://example.com&with=1280&height=600', follow_redirects=True)
+        
+        self.assertEqual(response.data.decode('utf-8').startswith('{\n  "url"'), True)
+        print(response.data.decode('utf-8'))
+        
 
 
 if __name__ == "__main__":     
