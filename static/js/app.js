@@ -289,4 +289,32 @@ $(document).ready(function (){
         // set from URL from iframe src attribute
     $(form + " input[name='url']").val($( frame ).attr('src'));
     update_permalink();
+
+    var screenshot_url = "";
+    var screenshot_permalink = "";
+
+    $("#screenshot").on('click', function(e){
+        if (screenshot_url && screenshot_permalink == $("#copy-permalink").val()) {
+            popup(screenshot_url);
+        }
+        else {
+            screenshot_permalink = $("#copy-permalink").val();
+            var url = "/screenshot?url=" + $("#external-content").attr('src') + "&width=" + $( form ).find('.width').val() + "&height=" + $( form ).find('.height').val();
+            $.getJSON(url, function(data){
+                screenshot_url = data['url'];
+                var win = popup(screenshot_url);
+                if(win){
+                    //Browser has allowed it to be opened
+                    win.focus();
+                }else{
+                    //Broswer has blocked it
+                    alert('Please allow popups for this site');
+                }
+            });
+        }
+
+    });
+    function popup(url) {
+        return window.open(url, '_blank');
+    }
 });
