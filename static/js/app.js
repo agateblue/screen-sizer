@@ -261,6 +261,7 @@ $(document).ready(function (){
     $(".modal-open").on('click', function(event) {
         var modal =  $("#"+$(this).attr('data-modal-id'));
         modal.toggleClass("active");
+        event.preventDefault()
         
     });
     

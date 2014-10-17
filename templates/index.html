@@ -134,7 +134,7 @@
                     <select id="languages">
                     {% for locale, attributes in languages.items() %}
                             <option value="{{ attributes['flag'] }}"
-                            {% if attributes['flag'] == current_locale %} selected="selected"{% endif %}>{{ attributes['name'].decode('utf-8') }}</option>
+                            {% if attributes['flag'] == current_locale %} selected="selected"{% endif %}>{{ attributes['name']}}</option>
                     {% endfor %}
                     </select> 
                 </form>

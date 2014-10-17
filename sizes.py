@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from flask.ext.babel import gettext as _
 
 # a pack of commons size for fast testing and javascript shortcut

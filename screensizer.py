@@ -16,6 +16,8 @@
     You should have received a copy of the GNU General Public License
     along with Screen Sizer.  If not, see <http://www.gnu.org/licenses/>.
 """
+
+from __future__ import unicode_literals
 from flask import Flask, render_template, request, redirect, url_for, abort
 from flask.ext.babel import Babel, refresh
 import settings
@@ -53,7 +55,7 @@ def index(locale):
     refresh()
     try:
         width = int(request.args.get("width"))
-    except Exception, e:
+    except Exception as e:
         width = settings.default_size[0]
 
     try:

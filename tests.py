@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 import unittest
 import screensizer
 import os
@@ -18,32 +19,32 @@ class ScreenSizerTestCase(unittest.TestCase):
         # check default iframe url is used correctly when ?url=xxx not provided
         response = self.app.get('/', follow_redirects=True)
         
-        self.assertIn('src="{0}"'.format(screensizer.settings.default_iframe_url), response.data)
+        self.assertEqual('src="{0}"'.format(screensizer.settings.default_iframe_url) in response.data.decode('utf-8'), True)
 
         # check ?url=xxx is passed correctly when provided
         url = "http://testurl"
         response = self.app.get('/?url={0}'.format(url), follow_redirects=True)
         
-        self.assertIn('src="{0}"'.format(url), response.data)
+        self.assertIn('src="{0}"'.format(url), response.data.decode('utf-8'))
 
         # check ?width=xx is passed correctly when provided
         width = 666
         response = self.app.get('/?width={0}'.format(width), follow_redirects=True)
         
-        self.assertIn('width="{0}"'.format(width), response.data)
+        self.assertIn('width="{0}"'.format(width), response.data.decode('utf-8'))
 
         # check ?height=xx is passed correctly when provided
         height = 999
         response = self.app.get('/?height={0}'.format(height), follow_redirects=True)
         
-        self.assertIn('height="{0}"'.format(height), response.data)
+        self.assertIn('height="{0}"'.format(height), response.data.decode('utf-8'))
 
         # check with all combined
         response = self.app.get('/?url={0}&width={1}&height={2}'.format(url, width, height), follow_redirects=True)
         
-        self.assertIn('src="{0}"'.format(url), response.data)
-        self.assertIn('width="{0}"'.format(width), response.data)
-        self.assertIn('height="{0}"'.format(height), response.data)
+        self.assertIn('src="{0}"'.format(url), response.data.decode('utf-8'))
+        self.assertIn('width="{0}"'.format(width), response.data.decode('utf-8'))
+        self.assertIn('height="{0}"'.format(height), response.data.decode('utf-8'))
 
 
 if __name__ == "__main__":     
