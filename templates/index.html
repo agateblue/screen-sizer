@@ -43,15 +43,28 @@
                     <li id="rotate">{{ _("Rotate") }}</li>        
                     <li id="refresh">{{ _("Refresh") }}</li> 
                     <li id="fullscreen">{{ _("Fullscreen") }}</li>
-                    <li id="screenshot">{{ _("Screenshot") }}</li>
+                    <li id="screenshot" class="modal-open" data-modal-id="screenshot-modal">{{ _("Screenshot") }}...</li>
                     <li>
                         <a href="" id="permalink" title='{{ _("Permalink to this test") }}'>{{ _("Permalink") }}</a>
                         <input id="copy-permalink" size="35" type="text" name="url" readonly />
                     </li>
                     <li id="more" class="modal-open" data-modal-id="more-modal"><span class="label" >{{ _("More...") }}</span></li>
-                    <li id="about" class="modal-open" data-modal-id="about-modal"><span class="label" >{{ _("About") }}</span></li>
+                    <li id="about" class="modal-open" data-modal-id="about-modal"><span class="label" >{{ _("About") }}...</span></li>
                 
                 </ul>
+                <div id="screenshot-modal" class="modal">
+                    <div class="modal-bg"></div>
+                    <div class="window">
+                        <span class="modal-close">
+                        x
+                        </span>
+                        <button class="capture">{{ _("Take screenshot") }}</button> 
+                        <button class="clear">{{ _("Clear screenshots cache") }}</button>  
+                        <div id="screenshots">
+
+                        </div>
+                    </div>
+                </div>
                 <div id="more-modal" class="modal">
                     <div class="modal-bg"></div>
                     <div class="window">
@@ -60,7 +73,7 @@
                     </span>
                         <h2>{{ _("Bookmarklet") }}</h2>
                         <a id="bookmarklet"
-                            href="javascript:(function(){window.open('{{ bookmarklet_url }}'+'?url='+location.href);})();">{{ title }}
+                            href="javascript:(function(){window.open('{{ bookmarklet_url }}'+'?url='+location.href);})();" class="button">{{ title }}
                             
                             </a>
                         <p class="help">{{ _("Add this link into your browser bookmarks. You'll then be able to check any website in one click.") }}</p>
@@ -169,5 +182,13 @@ _('height') }}" title="{{ _('height') }}" value="{{ dimensions[1] }}"
             src="static/{{ js }}" ></script>
         {% endfor %}
 
+        <script type="text/template" id="screenshotTemplate">
+            <div class="screenshot">
+                <a href="{0}" target="_blank"><img src="{0}" /></a>
+                <a href="{0}" target="_blank">{1}</a>
+                <span class="size">{2} x {3}</span>
+                <span class="timestamp">{4}</span>
+            </div>
+        </script>
     </body>
 </html>

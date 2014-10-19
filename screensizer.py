@@ -21,18 +21,19 @@ from __future__ import unicode_literals
 from flask import Flask, render_template, request, redirect, url_for, abort, jsonify
 from flask.ext.babel import Babel, refresh
 import settings
-import uuid
 import subprocess
 
 import os
 import gettext
+from urlparse import urlparse
+import datetime
 
 app = Flask(__name__)
 babel = Babel(app, default_locale=settings.default_locale)
 
 import sizes
 
-SCREENSHOTS_ROOT = "/screenshots/"
+SCREENSHOTS_ROOT = "/screenshots"
 app.config['SCREENSHOTS_PATH'] = settings.screenshots_path
 
 @babel.localeselector
@@ -111,34 +112,55 @@ def take_screeshot():
 
 
     crop = request.args.get('crop', True)
-    
-
     if crop: crop = "--crop"
 
-    identifier = str(uuid.uuid4())
+    # find domain name
+    parsed_uri = urlparse(url)
+    domain = parsed_uri.netloc
+    screenshot_path = os.path.join(settings.screenshots_path, domain)
+    
+    path = parsed_uri.path
+    if not path:       
+        path = ""
+    # construct file name
+    filename = "{path}___{size}___{timestamp}".format(
+        path=path,
+        size="{0}x{1}".format(width, height),
+        timestamp=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    )
     cwd = os.getcwd()
-    command = 'cd "{0}" && {1} {2} {3}x{4} --filename {5} {6} && cd "{7}"'.format(
-        settings.screenshots_path,
-        settings.screenshot_app,
-        url,
-        width,
-        height,
-        identifier,
-        crop,
-        cwd
+
+    mkdir = 'mkdir -p "{0}"'.format(screenshot_path)
+    cd1 = 'cd "{0}"'.format(screenshot_path)
+    cd2 = 'cd "{0}"'.format(cwd)
+    take_screenshot = "{screenshot_app} {url} {width}x{height} --filename '{filename}' {crop}".format(
+        screenshot_app=settings.screenshot_app,
+        url=url,
+        width=width,
+        height=height,
+        filename=filename,
+        crop=crop
         )
 
+    command = '{mkdir} && {cd1} && {take_screenshot} && {cd2}'.format(
+        mkdir=mkdir,
+        cd1=cd1,
+        take_screenshot=take_screenshot,
+        cd2=cd2
+        )
+    
     output = subprocess.call(command, stdout=subprocess.PIPE, shell=True)
     
-    screenshot_url = SCREENSHOTS_ROOT + identifier + ".png"
-    return jsonify(url=screenshot_url)
+    screenshot_identifier = domain + "/" + filename + ".png"
+    screenshot_url = SCREENSHOTS_ROOT + "/" + screenshot_identifier
+    return jsonify(url=screenshot_url, id=screenshot_identifier)
 
 from flask import send_from_directory
 
-@app.route(SCREENSHOTS_ROOT + '<filename>')
-def serve_screenshot(filename):
+@app.route(SCREENSHOTS_ROOT + '/<path:path>')
+def serve_screenshot(path):
     return send_from_directory(app.config['SCREENSHOTS_PATH'],
-                               filename)
+                               path)
 
 if __name__ == "__main__":     
     app.run(host=settings.hostname, port=settings.port, debug=settings.debug) 

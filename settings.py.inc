@@ -50,3 +50,4 @@ virtualenv_path = "/home/user/.virtualenvs/screen-sizer"
 
 
 screenshot_app = "/path/to/pageres"
+screenshots_path = os.path.join(BASE_DIR, "screenshots")

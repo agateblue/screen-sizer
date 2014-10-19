@@ -290,31 +290,108 @@ $(document).ready(function (){
     $(form + " input[name='url']").val($( frame ).attr('src'));
     update_permalink();
 
-    var screenshot_url = "";
-    var screenshot_permalink = "";
 
-    $("#screenshot").on('click', function(e){
-        if (screenshot_url && screenshot_permalink == $("#copy-permalink").val()) {
-            popup(screenshot_url);
-        }
-        else {
-            screenshot_permalink = $("#copy-permalink").val();
-            var url = "/screenshot?url=" + $("#external-content").attr('src') + "&width=" + $( form ).find('.width').val() + "&height=" + $( form ).find('.height').val();
-            $.getJSON(url, function(data){
-                screenshot_url = data['url'];
-                var win = popup(screenshot_url);
-                if(win){
-                    //Browser has allowed it to be opened
-                    win.focus();
-                }else{
-                    //Broswer has blocked it
-                    alert('Please allow popups for this site');
-                }
-            });
-        }
+    
+    $("#screenshot-modal .capture").on('click', function(e){
+        
+        var url = "/screenshot?url=" + $("#external-content").attr('src') + "&width=" + $( form ).find('.width').val() + "&height=" + $( form ).find('.height').val();
+        $.getJSON(url, function(data){
+            screenshot_url = data['url'];
+            screenshot = parse_screenshot(data);
 
+            add_screenshot(screenshot);
+            add_screenshot_template(screenshot);
+        });
     });
-    function popup(url) {
-        return window.open(url, '_blank');
+
+    function parse_screenshot (data) {
+        var id = data['id'];
+        var screenshot = {id: id, url: data['url']};
+
+        var i = id.indexOf('/');
+        var splits = [id.slice(0,i), id.slice(i+1)];
+
+        screenshot['domain'] = splits[0]; 
+        // remove file extension and dot and retrive file information from filename
+        var file_data = splits[1].split('___');
+
+        screenshot["path"] = file_data[0];
+        var size = file_data[1];
+        screenshot["width"] = size.split('x')[0];
+        screenshot["height"] = size.split('x')[1];
+        screenshot["timestamp"] = file_data[2].substring(0, file_data[2].length - 4);
+        return screenshot
     }
+
+    // localstorage relative code
+
+    $("#screenshot-modal .clear").on('click', function(e) {
+        localStorage.setObj("screenshots", {});
+        setup_screenshots();
+    });
+    Storage.prototype.setObj = function(key, obj) {
+    return this.setItem(key, JSON.stringify(obj))
+    }
+    Storage.prototype.getObj = function(key) {
+        return JSON.parse(this.getItem(key))
+    }
+
+    if (localStorage.getItem("screenshots") === null) {
+        localStorage.setObj("screenshots", {});
+    }
+    function all_screenshots() {
+        return localStorage.getObj('screenshots');
+
+    }
+    function domain_screenshots(domain) {
+        var all = all_screenshots();
+
+        if ( !all.hasOwnProperty(domain)) {
+            all[domain] = Array();
+        }
+        localStorage.setObj('screenshots', all);
+        return all[domain];
+    }
+    function update_domain_screenshots(domain, screenshots) {
+        var all = all_screenshots();
+        all[domain] = screenshots
+        localStorage.setObj("screenshots", all);
+        console.dir(window.localStorage);
+    }
+
+    function add_screenshot(screenshot) {
+        var screenshots = domain_screenshots(screenshot['domain']);
+        screenshots.unshift(screenshot);
+        update_domain_screenshots(screenshot['domain'], screenshots);
+    }
+
+    // templates, from http://stackoverflow.com/questions/14062368/new-recommended-jquery-templates
+    String.prototype.format = function() {
+      var args = arguments;
+      return this.replace(/{(\d+)}/g, function(match, number) { 
+        return typeof args[number] != 'undefined'
+          ? args[number]
+          : match
+        ;
+      });
+    };
+
+    function add_screenshot_template(screenshot) {
+        var screenshotTemplate = $("#screenshotTemplate").html();
+        var template = screenshotTemplate.format(screenshot['url'], screenshot['domain'], screenshot['width'], screenshot['height'], screenshot['timestamp']);
+        $("#screenshots").prepend(template);
+    }
+    function setup_screenshots(){
+        $("#screenshots").empty();
+        var domains = all_screenshots();
+        $.each(domains, function(i, screenshots){
+            console.log(i);
+            $.each(screenshots, function() {
+                console.log(this);
+                add_screenshot_template(this);
+            });
+        });
+    }
+
+    setup_screenshots();
 });

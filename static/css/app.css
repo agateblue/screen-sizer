@@ -57,6 +57,12 @@ h1 a {
     left: 50%;
     margin-left: -25rem;
     z-index:1000;
+    bottom: 2rem;
+    height: 90%;
+    overflow-y: scroll;
+}
+.window * {
+    max-width: 100%;
 }
 .modal .modal-close {
     float:right;
@@ -224,19 +230,35 @@ form .width, form .height {
     width: 3rem;
 }
 
-#bookmarklet {
+button, .button {
     font-size: 0.9rem;
     border: 1px solid rgba(125,125,125,0.3);
     border-radius: 5px;
     text-decoration: none;
-    text-align:center;
     color: black;
     max-width:7rem;
     padding:0.5rem;
-    display: block;
     margin-bottom: 0.5rem;
-    text-align: center;
-    
+    cursor: pointer;
 }
 
 
+#bookmarklet {
+    display: block;
+    text-align: center;
+
+}
+
+.screenshot {
+    border-bottom: 1px solid rgba(125,125,125,0.3);
+    overflow:hidden;
+}
+.screenshot:not(:first-child) img {
+    float:right;
+    max-width: 10rem;
+}
+
+.clear {
+    float: right;
+    margin-right: 4rem;
+}
