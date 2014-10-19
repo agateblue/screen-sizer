@@ -378,7 +378,7 @@ $(document).ready(function (){
 
     function add_screenshot_template(screenshot) {
         var screenshotTemplate = $("#screenshotTemplate").html();
-        var template = screenshotTemplate.format(screenshot['url'], screenshot['domain'], screenshot['width'], screenshot['height'], screenshot['timestamp']);
+        var template = screenshotTemplate.format(screenshot['url'], screenshot['domain'], screenshot['width'], screenshot['height'], screenshot['timestamp'], screenshot['path'].replace("%2F", "/"));
         $("#screenshots").prepend(template);
     }
     function setup_screenshots(){

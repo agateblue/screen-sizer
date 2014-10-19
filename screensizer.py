@@ -122,6 +122,8 @@ def take_screeshot():
     path = parsed_uri.path
     if not path:       
         path = ""
+    else:
+        path = path[1:].replace("/", "%2F")
     # construct file name
     filename = "{path}___{size}___{timestamp}".format(
         path=path,
@@ -157,10 +159,11 @@ def take_screeshot():
 
 from flask import send_from_directory
 
-@app.route(SCREENSHOTS_ROOT + '/<path:path>')
-def serve_screenshot(path):
+@app.route(SCREENSHOTS_ROOT + '/<domain>/<path:path>')
+def serve_screenshot(domain, path):
+    path = path.replace("/", "%2F")
     return send_from_directory(app.config['SCREENSHOTS_PATH'],
-                               path)
+                               os.path.join(domain, path))
 
 if __name__ == "__main__":     
     app.run(host=settings.hostname, port=settings.port, debug=settings.debug) 

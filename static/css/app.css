@@ -233,7 +233,6 @@ form .width, form .height {
 button, .button {
     font-size: 0.9rem;
     border: 1px solid rgba(125,125,125,0.3);
-    border-radius: 5px;
     text-decoration: none;
     color: black;
     max-width:7rem;
@@ -249,16 +248,39 @@ button, .button {
 
 }
 
+#screenshots {
+}
 .screenshot {
     border-bottom: 1px solid rgba(125,125,125,0.3);
     overflow:hidden;
+    padding: 1rem 0;
+}
+
+.screenshot > * {
+    margin: 1rem 0;
+}
+
+.screenshot .label {
+    font-weight: bold;
+}
+.screenshot .label:after {
+    content: ": ";
+}
+.screenshot:first-child img {
+    margin-bottom: 2rem;
+}
+
+.screenshot:not(:first-child) {
+    
 }
 .screenshot:not(:first-child) img {
     float:right;
-    max-width: 10rem;
+    max-width: 40%;
+    margin-left: 1rem;
+
 }
 
-.clear {
-    float: right;
-    margin-right: 4rem;
+.clear, .capture {
+    display: block;
+    margin: 1rem auto;
 }

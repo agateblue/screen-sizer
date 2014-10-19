@@ -59,10 +59,10 @@
                         x
                         </span>
                         <button class="capture">{{ _("Take screenshot") }}</button> 
-                        <button class="clear">{{ _("Clear screenshots cache") }}</button>  
                         <div id="screenshots">
 
                         </div>
+                        <button class="clear">{{ _("Clear screenshots cache") }}</button>  
                     </div>
                 </div>
                 <div id="more-modal" class="modal">
@@ -185,9 +185,10 @@ _('height') }}" title="{{ _('height') }}" value="{{ dimensions[1] }}"
         <script type="text/template" id="screenshotTemplate">
             <div class="screenshot">
                 <a href="{0}" target="_blank"><img src="{0}" /></a>
-                <a href="{0}" target="_blank">{1}</a>
-                <span class="size">{2} x {3}</span>
-                <span class="timestamp">{4}</span>
+                <p class="size"><span class="label">{{ _('Size') }}</span>{2} x {3}</p>
+                <p class="timestamp"><span class="label">{{ _('Date') }}</span>{4}</p>
+                <p class="from"><span class="label">{{ _('Source') }}</span><a href="http://{1}/{5}" target="_blank">{1}/{5}</a></p>
+                <a href="{0}" class="permalink" target="_blank">{{ _('Permalink') }}</a>
             </div>
         </script>
     </body>
