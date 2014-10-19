@@ -293,15 +293,23 @@ $(document).ready(function (){
 
     
     $("#screenshot-modal .capture").on('click', function(e){
-        
-        var url = "/screenshot?url=" + $("#external-content").attr('src') + "&width=" + $( form ).find('.width').val() + "&height=" + $( form ).find('.height').val();
-        $.getJSON(url, function(data){
-            screenshot_url = data['url'];
-            screenshot = parse_screenshot(data);
+        if (!$(this).hasClass('disabled')){
 
-            add_screenshot(screenshot);
-            add_screenshot_template(screenshot);
-        });
+            console.log('clicked');
+            var b = $(this);
+            b.toggleClass('disabled');
+            $(".spinner").show();
+            var url = "/screenshot?url=" + $("#external-content").attr('src') + "&width=" + $( form ).find('.width').val() + "&height=" + $( form ).find('.height').val();
+            $.getJSON(url, function(data){
+                screenshot_url = data['url'];
+                screenshot = parse_screenshot(data);
+
+                add_screenshot(screenshot);
+                add_screenshot_template(screenshot);
+                b.toggleClass('disabled');
+                $(".spinner").hide();
+            });
+        }
     });
 
     function parse_screenshot (data) {
@@ -356,7 +364,6 @@ $(document).ready(function (){
         var all = all_screenshots();
         all[domain] = screenshots
         localStorage.setObj("screenshots", all);
-        console.dir(window.localStorage);
     }
 
     function add_screenshot(screenshot) {
@@ -379,19 +386,21 @@ $(document).ready(function (){
     function add_screenshot_template(screenshot) {
         var screenshotTemplate = $("#screenshotTemplate").html();
         var template = screenshotTemplate.format(screenshot['url'], screenshot['domain'], screenshot['width'], screenshot['height'], screenshot['timestamp'], screenshot['path'].replace("%2F", "/"));
-        $("#screenshots").prepend(template);
+        var element = $($.parseHTML(template ));
+        element.hide();
+        $("#screenshots").prepend(element);
+        element.show(500);
     }
     function setup_screenshots(){
         $("#screenshots").empty();
         var domains = all_screenshots();
         $.each(domains, function(i, screenshots){
-            console.log(i);
             $.each(screenshots, function() {
-                console.log(this);
                 add_screenshot_template(this);
             });
         });
     }
 
     setup_screenshots();
+    $(".spinner").hide();
 });

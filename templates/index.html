@@ -55,10 +55,20 @@
                 <div id="screenshot-modal" class="modal">
                     <div class="modal-bg"></div>
                     <div class="window">
+                        <h1>{{ _("Screenshot") }}</h1>
                         <span class="modal-close">
                         x
                         </span>
-                        <button class="capture">{{ _("Take screenshot") }}</button> 
+                        <div class="action">
+                            <button class="capture">{{ _("Take screenshot") }}</button> 
+                            <div class="spinner">
+                              <div class="rect1"></div>
+                              <div class="rect2"></div>
+                              <div class="rect3"></div>
+                              <div class="rect4"></div>
+                              <div class="rect5"></div>
+                            </div>
+                        </div>
                         <div id="screenshots">
 
                         </div>
@@ -68,6 +78,7 @@
                 <div id="more-modal" class="modal">
                     <div class="modal-bg"></div>
                     <div class="window">
+                        <h1>{{ _("More") }}</h1>
                         <span class="modal-close">
                         x
                     </span>
@@ -133,6 +144,7 @@
                 <div id="about-modal" class="modal">
                     <div class="modal-bg"></div>
                     <div class="window">
+                        <h1>{{ _("About") }}</h1>
                         <span class="modal-close">
                         x
                     </span>
@@ -184,11 +196,14 @@ _('height') }}" title="{{ _('height') }}" value="{{ dimensions[1] }}"
 
         <script type="text/template" id="screenshotTemplate">
             <div class="screenshot">
-                <a href="{0}" target="_blank"><img src="{0}" /></a>
-                <p class="size"><span class="label">{{ _('Size') }}</span>{2} x {3}</p>
-                <p class="timestamp"><span class="label">{{ _('Date') }}</span>{4}</p>
-                <p class="from"><span class="label">{{ _('Source') }}</span><a href="http://{1}/{5}" target="_blank">{1}/{5}</a></p>
-                <a href="{0}" class="permalink" target="_blank">{{ _('Permalink') }}</a>
+                <div class="info">
+                    <p class="domain"><span class="label">{{ _('Domain') }}</span><a href="http://{1}" target="_blank">{1}</a></p>
+                    <p class="from"><span class="label">{{ _('Source page') }}</span><a href="http://{1}/{5}" target="_blank">{1}/{5}</a></p>
+                    <p class="size"><span class="label">{{ _('Size') }}</span>{2} x {3}</p>
+                    <p class="timestamp"><span class="label">{{ _('Date') }}</span>{4}</p>
+                    <a href="{0}" class="permalink" target="_blank">{{ _('Permalink') }}</a> - <a href="{0}" download="{1}-{2}x{3}-{4}.png" class="download">{{ _('Download') }}</a>
+                </div>
+                <a href="{0}" class="img" target="_blank"><img src="{0}" /></a>
             </div>
         </script>
     </body>
