@@ -111,8 +111,8 @@ def take_screeshot():
         return ('Please provide a URL argument', 422)
 
 
-    crop = request.args.get('crop', True)
-    if crop: crop = "--crop"
+    crop = request.args.get('crop', "--crop")
+    if crop == "no": crop = "--no-crop"
 
     # find domain name
     parsed_uri = urlparse(url)
@@ -135,7 +135,7 @@ def take_screeshot():
     mkdir = 'mkdir -p "{0}"'.format(screenshot_path)
     cd1 = 'cd "{0}"'.format(screenshot_path)
     cd2 = 'cd "{0}"'.format(cwd)
-    take_screenshot = "{screenshot_app} {url} {width}x{height} --filename '{filename}' {crop}".format(
+    take_screenshot = "{screenshot_app} {url} {width}x{height} {crop} --filename '{filename}'".format(
         screenshot_app=settings.screenshot_app,
         url=url,
         width=width,
@@ -143,7 +143,7 @@ def take_screeshot():
         filename=filename,
         crop=crop
         )
-
+    
     command = '{mkdir} && {cd1} && {take_screenshot} && {cd2}'.format(
         mkdir=mkdir,
         cd1=cd1,

@@ -61,6 +61,9 @@
                         </span>
                         <div class="action">
                             <button class="capture">{{ _("Take screenshot") }}</button> 
+                            <form>
+                                <label for="cropped">{{ _("Cropped") }}</label><input type="checkbox" id="cropped" name="cropped" checked>
+                            </form> 
                             <div class="spinner">
                               <div class="rect1"></div>
                               <div class="rect2"></div>
@@ -68,11 +71,11 @@
                               <div class="rect4"></div>
                               <div class="rect5"></div>
                             </div>
+                            <button class="clear">{{ _("Clear screenshots cache") }}</button>  
                         </div>
                         <div id="screenshots">
 
                         </div>
-                        <button class="clear">{{ _("Clear screenshots cache") }}</button>  
                     </div>
                 </div>
                 <div id="more-modal" class="modal">

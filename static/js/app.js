@@ -170,6 +170,12 @@ $(document).ready(function (){
             if (e.which == 82) {
                 rotate();
             }
+            if (e.which == 83) {
+                if (!$('#screenshot-modal').hasClass('active')) {
+                    $('#screenshot').trigger('click');
+                }
+                $('.window .capture').trigger('click');
+            }
             if (e.which == 32 && e.ctrlKey) {
                 e.preventDefault();
                 next_frequent(-1);
@@ -299,7 +305,11 @@ $(document).ready(function (){
             var b = $(this);
             b.toggleClass('disabled');
             $(".spinner").show();
-            var url = "/screenshot?url=" + $("#external-content").attr('src') + "&width=" + $( form ).find('.width').val() + "&height=" + $( form ).find('.height').val();
+            var crop = "";
+            if (!$("#cropped").prop('checked')) {
+                crop = "&crop=no";
+            }
+            var url = "/screenshot?url=" + $("#external-content").attr('src') + "&width=" + $( form ).find('.width').val() + "&height=" + $( form ).find('.height').val() + crop;
             $.getJSON(url, function(data){
                 screenshot_url = data['url'];
                 screenshot = parse_screenshot(data);

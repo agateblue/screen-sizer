@@ -56,11 +56,6 @@ class ScreenSizerTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 404)
         settings.screenshot_app = old
 
-    def test_can_get_url_of_screenshot(self):
-        response = self.app.get('/screenshot?url=http://example.com&with=1280&height=600', follow_redirects=True)
-        
-        self.assertEqual(response.data.decode('utf-8').startswith('{\n  "url"'), True)
-        
     def test_screenshot_url_include_timestamp_domain_and_size(self):
         response = self.app.get('/screenshot?url=http://example.com&with=1280&height=600', follow_redirects=True)
         url = json.loads(response.data.decode('utf-8'))['url']
