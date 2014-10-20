@@ -53,7 +53,8 @@ Ensure you have these tools installed on your machine then:
 
 ### Get Screen Sizer
 
-    git clone https://github.com/EliotBerriot/screen-sizer.git
+    wget clone https://github.com/EliotBerriot/archive/0.4.0.zip -O screen-sizer.zip
+    unzip screen-sizer.zip
     cd screen-sizer
 
 ### Install python dependencies
