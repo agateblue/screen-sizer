@@ -317,6 +317,10 @@ button, .button {
     margin: 1rem auto;
 }
 
+.delete {
+    display:block;
+    margin: 1rem 0;
+}
 
 /* CSS spinner from http://tobiasahlin.com/spinkit/ */
 

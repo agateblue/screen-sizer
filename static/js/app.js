@@ -170,7 +170,7 @@ $(document).ready(function (){
             if (e.which == 82) {
                 rotate();
             }
-            if (e.which == 83) {
+            if (e.which == 83 && screenshots_enabled) {
                 if (!$('#screenshot-modal').hasClass('active')) {
                     $('#screenshot').trigger('click');
                 }
@@ -286,120 +286,141 @@ $(document).ready(function (){
     update_permalink();
 
 
-    
-    $("#screenshot-modal .capture").on('click', function(e){
-        if (!$(this).hasClass('disabled')){
+    if (screenshots_enabled){
 
-            console.log('clicked');
-            var b = $(this);
-            b.toggleClass('disabled');
-            $(".spinner").show();
-            var crop = "";
-            if (!$("#cropped").prop('checked')) {
-                crop = "&crop=no";
-            }
-            var url = "/screenshot?url=" + $("#external-content").attr('src') + "&width=" + $( form ).find('.width').val() + "&height=" + $( form ).find('.height').val() + crop;
-            $.getJSON(url, function(data){
-                screenshot_url = data['url'];
-                screenshot = parse_screenshot(data);
+        $("#screenshot-modal .capture").on('click', function(e){
+            if (!$(this).hasClass('disabled')){
 
-                add_screenshot(screenshot);
-                add_screenshot_template(screenshot);
+                console.log('clicked');
+                var b = $(this);
                 b.toggleClass('disabled');
-                $(".spinner").hide();
-            });
-        }
-    });
+                $(".spinner").show();
+                var crop = "";
+                if (!$("#cropped").prop('checked')) {
+                    crop = "&crop=no";
+                }
+                var url = "/screenshot?url=" + $("#frame-url").val() + "&width=" + $( form ).find('.width').val() + "&height=" + $( form ).find('.height').val() + crop;
+                $.getJSON(url, function(data){
+                    screenshot_url = data['url'];
+                    screenshot = parse_screenshot(data);
 
-    function parse_screenshot (data) {
-        var id = data['id'];
-        var screenshot = {id: id, url: data['url']};
-
-        var i = id.indexOf('/');
-        var splits = [id.slice(0,i), id.slice(i+1)];
-
-        screenshot['domain'] = splits[0]; 
-        // remove file extension and dot and retrive file information from filename
-        var file_data = splits[1].split('___');
-
-        screenshot["path"] = file_data[0];
-        var size = file_data[1];
-        screenshot["width"] = size.split('x')[0];
-        screenshot["height"] = size.split('x')[1];
-        screenshot["timestamp"] = file_data[2].substring(0, file_data[2].length - 4);
-        return screenshot
-    }
-
-    // localstorage relative code
-
-    $("#screenshot-modal .clear").on('click', function(e) {
-        localStorage.setObj("screenshots", {});
-        setup_screenshots();
-    });
-    Storage.prototype.setObj = function(key, obj) {
-    return this.setItem(key, JSON.stringify(obj))
-    }
-    Storage.prototype.getObj = function(key) {
-        return JSON.parse(this.getItem(key))
-    }
-
-    if (localStorage.getItem("screenshots") === null) {
-        localStorage.setObj("screenshots", {});
-    }
-    function all_screenshots() {
-        return localStorage.getObj('screenshots');
-
-    }
-    function domain_screenshots(domain) {
-        var all = all_screenshots();
-
-        if ( !all.hasOwnProperty(domain)) {
-            all[domain] = Array();
-        }
-        localStorage.setObj('screenshots', all);
-        return all[domain];
-    }
-    function update_domain_screenshots(domain, screenshots) {
-        var all = all_screenshots();
-        all[domain] = screenshots
-        localStorage.setObj("screenshots", all);
-    }
-
-    function add_screenshot(screenshot) {
-        var screenshots = domain_screenshots(screenshot['domain']);
-        screenshots.unshift(screenshot);
-        update_domain_screenshots(screenshot['domain'], screenshots);
-    }
-
-    // templates, from http://stackoverflow.com/questions/14062368/new-recommended-jquery-templates
-    String.prototype.format = function() {
-      var args = arguments;
-      return this.replace(/{(\d+)}/g, function(match, number) { 
-        return typeof args[number] != 'undefined'
-          ? args[number]
-          : match
-        ;
-      });
-    };
-
-    function add_screenshot_template(screenshot) {
-        var screenshotTemplate = $("#screenshotTemplate").html();
-        var template = screenshotTemplate.format(screenshot['url'], screenshot['domain'], screenshot['width'], screenshot['height'], screenshot['timestamp'], screenshot['path'].replace("%2F", "/"));
-        var element = $($.parseHTML(template ));
-        element.hide();
-        $("#screenshots").prepend(element);
-        element.show(500);
-    }
-    function setup_screenshots(){
-        $("#screenshots").empty();
-        var domains = all_screenshots();
-        $.each(domains, function(i, screenshots){
-            $.each(screenshots, function() {
-                add_screenshot_template(this);
-            });
+                    add_screenshot(screenshot);
+                    add_screenshot_template(screenshot);
+                    b.toggleClass('disabled');
+                    $(".spinner").hide();
+                });
+            }
         });
-    }
 
-    setup_screenshots();
-    $(".spinner").hide();
+        function parse_screenshot (data) {
+            var id = data['id'];
+            var screenshot = {id: id, url: data['url']};
+
+            var i = id.indexOf('/');
+            var splits = [id.slice(0,i), id.slice(i+1)];
+
+            screenshot['domain'] = splits[0]; 
+            // remove file extension and dot and retrive file information from filename
+            var file_data = splits[1].split('___');
+
+            screenshot["path"] = file_data[0];
+            var size = file_data[1];
+            screenshot["width"] = size.split('x')[0];
+            screenshot["height"] = size.split('x')[1];
+            screenshot["timestamp"] = file_data[2].substring(0, file_data[2].length - 4);
+            return screenshot
+        }
+
+        // localstorage relative code
+
+        $("#screenshot-modal .clear").on('click', function(e) {
+            localStorage.setObj("screenshots", {});
+            setup_screenshots();
+        });
+        Storage.prototype.setObj = function(key, obj) {
+        return this.setItem(key, JSON.stringify(obj))
+        }
+        Storage.prototype.getObj = function(key) {
+            return JSON.parse(this.getItem(key))
+        }
+
+        if (localStorage.getItem("screenshots") === null) {
+            localStorage.setObj("screenshots", {});
+        }
+        function all_screenshots() {
+            return localStorage.getObj('screenshots');
+
+        }
+        function domain_screenshots(domain) {
+            var all = all_screenshots();
+
+            if ( !all.hasOwnProperty(domain)) {
+                all[domain] = Array();
+            }
+            localStorage.setObj('screenshots', all);
+            return all[domain];
+        }
+        function update_domain_screenshots(domain, screenshots) {
+            var all = all_screenshots();
+            all[domain] = screenshots
+            localStorage.setObj("screenshots", all);
+        }
+
+        function add_screenshot(screenshot) {
+            var screenshots = domain_screenshots(screenshot['domain']);
+            screenshots.unshift(screenshot);
+            update_domain_screenshots(screenshot['domain'], screenshots);
+        }
+
+        // templates, from http://stackoverflow.com/questions/14062368/new-recommended-jquery-templates
+        String.prototype.format = function() {
+          var args = arguments;
+          return this.replace(/{(\d+)}/g, function(match, number) { 
+            return typeof args[number] != 'undefined'
+              ? args[number]
+              : match
+            ;
+          });
+        };
+
+        function add_screenshot_template(screenshot) {
+            var screenshotTemplate = $("#screenshotTemplate").html();
+            var template = screenshotTemplate.format(screenshot['url'], screenshot['domain'], screenshot['width'], screenshot['height'], screenshot['timestamp'], screenshot['path'].replace("%2F", "/"));
+            var element = $($.parseHTML(template ));
+            element.hide();
+            $("#screenshots").prepend(element);
+            element.show(500);
+            element.find('.delete').on('click', function() {
+                console.log('clicked')
+                var screenshot = $(this).closest('.screenshot');
+                var url = screenshot.find('.permalink').attr('href');
+                var domain = screenshot.find('.from').attr('data-domain');
+                screenshots = domain_screenshots(domain);
+                $.each(screenshots, function(i, s) {
+                    if (s['url'] == url) {
+                        screenshots.splice( i, 1 );
+                        update_domain_screenshots(domain, screenshots);
+                        screenshot.fadeOut( "slow", function() {
+                            screenshot.remove();
+                            });
+                        return false;
+                    }
+                });
+
+            });
+        }
+
+        function setup_screenshots(){
+            $("#screenshots").empty();
+            var domains = all_screenshots();
+            $.each(domains, function(i, screenshots){
+                $.each(screenshots.reverse(), function() {
+                    add_screenshot_template(this);
+                });
+            });
+        }
+        
+        setup_screenshots();
+        $(".spinner").hide();
+    }
 });

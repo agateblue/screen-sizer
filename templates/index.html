@@ -5,10 +5,10 @@
         <meta charset="utf-8">
         <title>{{ title }}</title>
         <link rel="icon" href="static/img/favicon.ico" />
-        {% for css in assets['css'] %}
+        {% for css in settings.assets['css'] %}
             <link href="static/{{ css }}" media="screen" rel="stylesheet" type="text/css" />
         {% endfor %}
-        {% for js in assets['js-before'] %}
+        {% for js in settings.assets['js-before'] %}
             <script type="text/javascript" 
             src="static/{{ js }}" ></script>
         {% endfor %}
@@ -43,7 +43,9 @@
                     <li id="rotate">{{ _("Rotate") }}</li>        
                     <li id="refresh">{{ _("Refresh") }}</li> 
                     <li id="fullscreen">{{ _("Fullscreen") }}</li>
-                    <li id="screenshot" class="modal-open" data-modal-id="screenshot-modal">{{ _("Screenshot") }}...</li>
+                    {% if settings.screenshots_enabled %}
+                        <li id="screenshot" class="modal-open" data-modal-id="screenshot-modal">{{ _("Screenshot") }}...</li>
+                    {% endif %}
                     <li>
                         <a href="" id="permalink" title='{{ _("Permalink to this test") }}'>{{ _("Permalink") }}</a>
                         <input id="copy-permalink" size="35" type="text" name="url" readonly />
@@ -52,6 +54,7 @@
                     <li id="about" class="modal-open" data-modal-id="about-modal"><span class="label" >{{ _("About") }}...</span></li>
                 
                 </ul>
+                {% if settings.screenshots_enabled %}
                 <div id="screenshot-modal" class="modal">
                     <div class="modal-bg"></div>
                     <div class="window">
@@ -71,13 +74,14 @@
                               <div class="rect4"></div>
                               <div class="rect5"></div>
                             </div>
-                            <button class="clear">{{ _("Clear screenshots cache") }}</button>  
+                            <button class="clear">{{ _("Delete all") }}</button>  
                         </div>
                         <div id="screenshots">
 
                         </div>
                     </div>
                 </div>
+                {% endif %}
                 <div id="more-modal" class="modal">
                     <div class="modal-bg"></div>
                     <div class="window">
@@ -138,6 +142,12 @@
                                     <td>{{ _("Ctrl + Spacebar") }}</td>
                                     <td>{{ _("Iterate through frequent sizes, from biggest to smallest") }}</td>
                                 </tr>
+                                {% if settings.screenshots_enabled %}
+                                <tr>
+                                    <td>{{ _("S") }}</td>
+                                    <td>{{ _("Take a screenshot of current URL with current dimensions") }}</td>
+                                </tr>
+                                {% endif %}
                             </tbody>
                         </table>
                             
@@ -161,7 +171,7 @@
                 
                 <form id="language">                        
                     <select id="languages">
-                    {% for locale, attributes in languages.items() %}
+                    {% for locale, attributes in settings.languages.items() %}
                             <option value="{{ attributes['flag'] }}"
                             {% if attributes['flag'] == current_locale %} selected="selected"{% endif %}>{{ attributes['name']}}</option>
                     {% endfor %}
@@ -171,7 +181,7 @@
             </header>
             <section>
                 <div class="header">
-                 <h1><a href="/">{{ title }}</a></h1>
+                 <h1><a href="/">{{ settings.title }}</a></h1>
                     <form id="website" method="post" action=".">
                         <input id="frame-url" size="35" type="text"
 placeholder="{{ _('Enter a valid URL here') }}" title='{{ _('Enter a valid URL
@@ -192,21 +202,26 @@ _('height') }}" title="{{ _('height') }}" value="{{ dimensions[1] }}"
                 </div>
             </section>
         </div>
-        {% for js in assets['js-after'] %}
+        {% for js in settings.assets['js-after'] %}
             <script type="text/javascript" 
             src="static/{{ js }}" ></script>
         {% endfor %}
-
+        {% if settings.screenshots_enabled %}
+        <script type="text/javascript">
+            var screenshots_enabled=true;
+        </script>
         <script type="text/template" id="screenshotTemplate">
             <div class="screenshot">
                 <div class="info">
-                     <p class="from"><span class="label">{{ _('Source') }}</span><a href="http://{1}/{5}" target="_blank">{1}/{5}</a></p>
+                     <p class="from" data-domain="{1}"><span class="label">{{ _('Source') }}</span><a href="http://{1}/{5}" target="_blank">{1}/{5}</a></p>
                     <p class="size"><span class="label">{{ _('Size') }}</span>{2} x {3}</p>
                     <p class="timestamp"><span class="label">{{ _('Date') }}</span>{4}</p>
                     <a href="{0}" class="permalink" target="_blank">{{ _('Permalink') }}</a> - <a href="{0}" download="{1}-{2}x{3}-{4}.png" class="download">{{ _('Download') }}</a>
+                    <button class="delete">{{ _('Delete') }}</button>
                 </div>
                 <a href="{0}" class="img" target="_blank"><img src="{0}" /></a>
             </div>
         </script>
+        {% endif %}
     </body>
 </html>
