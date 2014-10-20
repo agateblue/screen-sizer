@@ -67,12 +67,12 @@ h1 a {
     background-color: white;
     width: 95%;
     max-width: 50rem;
-    top: 2rem;
+    top: 5rem;
     left: 50%;
     margin-left: -25rem;
     z-index:1000;
     bottom: 2rem;
-    height: 90%;
+    max-height: 90%;
     overflow-y: auto;
 }
 .window * {
@@ -201,6 +201,7 @@ section .header {
     height:3rem;
     background-color: white;
     border-bottom: 1px solid rgba(125,125,125,0.3);
+    z-index: 9999;
 }
 
 
@@ -241,7 +242,7 @@ input:focus {
 }
 
 form .width, form .height {
-    width: 3rem;
+    width: 5rem;
 }
 
 button, .button {
@@ -298,7 +299,8 @@ button, .button {
 }
 
 .screenshot:not(:first-child) .info {
-    float: left;    
+    float: left; 
+    max-width: 59%;   
 }
 .screenshot:not(:first-child) a.img {
     float:right;

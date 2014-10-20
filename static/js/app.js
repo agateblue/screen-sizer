@@ -272,6 +272,7 @@ $(document).ready(function (){
     });
     
     $(".modal-close, .modal-bg").on('click', function(event) {
+        console.log("bg or button clicked");
         $(".modal.active").toggleClass('active');
     });    
 
@@ -279,18 +280,6 @@ $(document).ready(function (){
         toggle_fullscreen();
         event.preventDefault();
     });
-    $(document).mouseup(function (event)
-    {
-        var container = $(".active");
-
-        if (!container.is(event.target) // if the target of the click isn't the container...
-            && container.has(event.target).length === 0) // ... nor a descendant of the container
-        {
-            container.toggleClass('active');
-        }
-    });
-    
-    // init 
     
         // set from URL from iframe src attribute
     $(form + " input[name='url']").val($( frame ).attr('src'));

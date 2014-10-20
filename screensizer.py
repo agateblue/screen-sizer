@@ -25,7 +25,11 @@ import subprocess
 
 import os
 import gettext
-from urlparse import urlparse
+try:
+    from urlparse import urlparse
+except:
+    # python3
+    from urllib.parse import urlparse
 import datetime
 
 app = Flask(__name__)
