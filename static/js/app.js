@@ -272,7 +272,6 @@ $(document).ready(function (){
     });
     
     $(".modal-close, .modal-bg").on('click', function(event) {
-        console.log("bg or button clicked");
         $(".modal.active").toggleClass('active');
     });    
 
@@ -291,7 +290,6 @@ $(document).ready(function (){
         $("#screenshot-modal .capture").on('click', function(e){
             if (!$(this).hasClass('disabled')){
 
-                console.log('clicked');
                 var b = $(this);
                 b.toggleClass('disabled');
                 $(".spinner").show();
@@ -391,7 +389,6 @@ $(document).ready(function (){
             $("#screenshots").prepend(element);
             element.show(500);
             element.find('.delete').on('click', function() {
-                console.log('clicked')
                 var screenshot = $(this).closest('.screenshot');
                 var url = screenshot.find('.permalink').attr('href');
                 var domain = screenshot.find('.from').attr('data-domain');

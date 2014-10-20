@@ -55,7 +55,7 @@ virtualenv_path = "/home/user/.virtualenvs/screen-sizer"
 
 # Set to True and update other settings accordingly if you want to enable screenshots
 #screenshots_enabled = True
-screeshots_enabled = False
+screenshots_enabled = False
 
 screenshot_app = "/usr/bin/pageres"
 

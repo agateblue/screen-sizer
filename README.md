@@ -53,8 +53,9 @@ Ensure you have these tools installed on your machine then:
 
 ### Get Screen Sizer
 
-    wget clone https://github.com/EliotBerriot/archive/0.4.0.zip -O screen-sizer.zip
+    wget https://github.com/EliotBerriot/screen-sizer/archive/0.4.0.zip -O screen-sizer.zip
     unzip screen-sizer.zip
+    mv screen-sizer-* screen-sizer
     cd screen-sizer
 
 ### Install python dependencies
@@ -74,7 +75,7 @@ Pageres require [NodeJS](https://github.com/joyent/node/wiki/installing-node.js-
     # as root 
     apt-get install curl
     curl -sL https://deb.nodesource.com/setup | bash -
-    apt-get install -y nodejs build-essentials
+    apt-get install -y nodejs build-essential
 
 Install pageres:
 
@@ -138,10 +139,15 @@ First, install `mod_wsgi`:
     
 Create the virtualhost file and edit it:
     
-    sudo cp config/apache /etc/apache2/sites-enabled/screensizer
-    nano /etc/apache2/sites-enabled/screensizer
+    sudo cp config/apache /etc/apache2/sites-enabled/screen-sizer
+    sudo nano /etc/apache2/sites-enabled/screen-sizer
 
     sudo service apache2 restart
+
+Set correct permissions on screenshots directory:
+    
+    sudo chown www-data:www-data -R /path/to/screenshots
+    sudo chmod 770 -R /path/to/screenshots
 
 Edit `virtualenv_path` in Screen sizer settings:
     
