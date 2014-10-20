@@ -3,6 +3,7 @@
 
     WSGIDaemonProcess screensizer user=youruser group=yourgroup threads=5
     WSGIScriptAlias / /path/to/screen/sizer/wsgi.py
+    Alias /screenshots /path/to/screenshots
 
     <Directory /path/to/screen/sizer>
         WSGIProcessGroup screensizer

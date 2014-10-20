@@ -15,13 +15,13 @@ I also wanted some features that were not available in these tools.
 
 # Features
 
-- Support both given and custom sizes
-- Each test (URL and dimension) 
+- Support both generic and custom sizes
+- Generate screenshot of visited webpages
+- Sharable tests and screenshots (via permalink)
 - Sharable test, via permalink
 - Multilingual (see
 [Available translations](#Available translations) for a list of available
 languages)
-- Full screen mode
 - Bookmarklet for instant testing when viewing a website
 - Keyboard shortcuts for faster usage
 - Free as in free beer and free speech (licenced under GPLv3)
@@ -32,7 +32,7 @@ whole template that better fits your needs
 
 # Requirements
 
-Screen Sizer is build upon [Flask](http://flask.pocoo.com), a micro-framework written in [Python](http://python.org). It uses [Flask-Babel]() to handle u18n, and [jQuery](http://jquery.com) for client side features.
+Screen Sizer is build upon [Flask](http://flask.pocoo.com), a micro-framework written in [Python](http://python.org). It uses [Flask-Babel]() to handle u18n, and [jQuery](http://jquery.com) for client side features. Screenshots are optional, but require [Pageres](https://github.com/sindresorhus/pageres) if you want them enabled.
 
 # Installation
 
@@ -40,7 +40,7 @@ Screen Sizer is build upon [Flask](http://flask.pocoo.com), a micro-framework wr
 
 Follow these steps to get a working Screen Sizer local instance. These steps are also needed in case of a production instance.
 
-Screen Sizer requires Python 2.7 (but should work with Python 2.6).
+Screen Sizer requires Python 3.4 or 2.7.
 
 ### Virtualenv
 
@@ -66,6 +66,28 @@ With easy_install:
 
     easy_install flask flask-babel
 
+### Enable screenshots (optional)
+
+Pageres require [NodeJS](https://github.com/joyent/node/wiki/installing-node.js-via-package-manager):
+
+    # as root 
+    apt-get install curl
+    curl -sL https://deb.nodesource.com/setup | bash -
+    apt-get install -y nodejs build-essentials
+
+Install pageres:
+
+    sudo npm install --global pageres
+
+Create a directory for screenshots:
+    
+    # example for a local install
+    mkdir screenshots
+
+    # example for a public install, you must use a path readable/writable by the webserver
+    mkdir /var/www/screenshots
+
+
 ### Create a settings.py file
 
 Copy the example settings and edit it with your preferences (given settings should work out of the box):
@@ -83,6 +105,7 @@ For easier launching, you could create a bash script with the following commands
     
     # screensizer.sh
     
+    #!/bin/bash
     workon screen-sizer
     cd /path/to/your/screen/sizer/install
     python screensizer.py

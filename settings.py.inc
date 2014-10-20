@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+
+
 assets = {
     "css": [
         "css/app.css",
-        # uncomment to enable custom CSS (remember to create the file in static/css/custom)
+        # uncomment to enable custom CSS
         #"css/custom/style.css",
     ],
     # js loaded in <head>
@@ -13,8 +15,8 @@ assets = {
     # js loaded just before </body>
     "js-after": [
         "js/app.js",
-        # uncomment to enable custom JS (remember to create the file in static/js/custom)
-        #"js/custom/custom.js" 
+        # uncomment to enable custom JS
+        #"js/custom/app.js" 
     ]
 
 }
@@ -35,7 +37,7 @@ hostname = "localhost"
 port = 5000
 
 #Available translations, accessible via URL like http://screen-sizer.domain/<flag>
-LANGUAGES = {
+languages = {
    'en': {'flag':'en', 'name':'English'},
    'fr': {'flag':'fr', 'name':'Français'}
 }
@@ -52,9 +54,15 @@ virtualenv_path = "/home/user/.virtualenvs/screen-sizer"
 ## Screenshots
 
 # Set to True and update other settings accordingly if you want to enable screenshots
-
 #screenshots_enabled = True
 screeshots_enabled = False
 
-screenshot_app = "/path/to/pageres"
+screenshot_app = "/usr/bin/pageres"
+
+# directory where users screenshots will be stored
+
+# store them in screen-sizer/screenshots
 screenshots_path = os.path.join(BASE_DIR, "screenshots")
+
+# an absolute path is also accepted
+#screenshots_path = "/var/www/screenshots"
