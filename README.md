@@ -1,16 +1,13 @@
-Screen Sizer is a web tool designed to help you during your reponsive webdesign
-testing process. By entering a URL, you can display a website in an <iframe> and
-resize it on the fly. This tool is *heavily* inspired from [Quirktools
-Screenfly](http://quirktools.com/screenfly) and [TestSize](http://testsize.com/). 
+Screen Sizer is a web tool designed to help you during your reponsive webdesign testing process. By entering a URL, you can display a website in an <iframe> and resize it on the fly. This tool is *heavily* inspired from [Quirktools Screenfly](http://quirktools.com/screenfly) and [TestSize](http://testsize.com/).
 
 WARNING : Screen Sizer do not replace cross-browser testing. Also, some websites block the usage of Iframe (on top of which Screen Sizer rely) and won't work with Screen Sizer.
 
-A demo instance is available at
-[http://screensizer.eliotberriot.com](http://screensizer.eliotberriot.com).
+A demo instance is available at [http://screensizer.eliotberriot.com](http://screensizer.eliotberriot.com).
 
 # Why make a clone ?
 
 Having control on services I use seems very important to me, especially when it's work related. Screenfly and TestSize are great tools, but there is absolutely no warranty they'll be available tomorrow.
+
 I also wanted some features that were not available in these tools.
 
 # Features
@@ -19,16 +16,13 @@ I also wanted some features that were not available in these tools.
 - Generate screenshot of visited webpages
 - Sharable tests and screenshots (via permalink)
 - Sharable test, via permalink
-- Multilingual (see
-[Available translations](#Available translations) for a list of available
-languages)
+- Multilingual (see [Available translations](#Available translations) for a list of available languages)
 - Bookmarklet for instant testing when viewing a website
 - Keyboard shortcuts for faster usage
 - Free as in free beer and free speech (licenced under GPLv3)
 - Runable locally, on your very own computer
 - Can be deployed on a webserver, for public access over the internet
-- Customizable: you can provide your own CSS, JS or even recreate a
-whole template that better fits your needs
+- Customizable: you can provide your own CSS, JS or even recreate a whole template that better fits your needs
 
 # Requirements
 
@@ -72,7 +66,7 @@ With easy_install:
 
 Pageres require [NodeJS](https://github.com/joyent/node/wiki/installing-node.js-via-package-manager):
 
-    # as root 
+    # as root
     apt-get install curl
     curl -sL https://deb.nodesource.com/setup | bash -
     apt-get install -y nodejs build-essential
@@ -82,7 +76,7 @@ Install pageres:
     sudo npm install --global pageres
 
 Create a directory for screenshots:
-    
+
     # example for a local install
     mkdir screenshots
 
@@ -93,67 +87,64 @@ Create a directory for screenshots:
 ### Create a settings.py file
 
 Copy the example settings and edit it with your preferences (given settings should work out of the box):
-    
+
     cp settings.py.inc settings.py
     nano settings.py
 
 After that, you should be able to run the dev server and access Screen Sizer locally :
-    
+
     python screensizer.py
     # Open http://localhost:5000 (by default) in your web browser
-    
+
 If you only want a local instance of Screen Sizer, you can stop here.
 For easier launching, you could create a bash script with the following commands :
-    
+
     # screensizer.sh
-    
+
     #!/bin/bash
     workon screen-sizer
     cd /path/to/your/screen/sizer/install
     python screensizer.py
-    
+
 And run it with :
-    
+
     bash screensizer.sh
 
 ## Production instance
 
-You may want to have a screen Sizer instance publicly accessible over the internet.
-It's possible !
+You may want to have a screen Sizer instance publicly accessible over the internet. It's possible !
 
-Assuming you followed all the steps described in the 'Local instance' section,
-you just need to configure your webserver for serving Screen Sizer.
+Assuming you followed all the steps described in the 'Local instance' section, you just need to configure your webserver for serving Screen Sizer.
 
-I will cover only one setup, but other configurations are of course possible
-(feel free to contribute to this part).
+I will cover only one setup, but other configurations are of course possible (feel free to contribute to this part).
 
 ### Apache and mod_wsgi
 
 Just in case:
-    
+
     cd screen-sizer
 
 First, install `mod_wsgi`:
-    
+
     sudo apt-get install libapache2-mod-wsgi
-    
+
 Create the virtualhost file and edit it:
-    
+
     sudo cp config/apache /etc/apache2/sites-enabled/screen-sizer
     sudo nano /etc/apache2/sites-enabled/screen-sizer
 
     sudo service apache2 restart
 
 Set correct permissions on screenshots directory:
-    
+
     sudo chown www-data:www-data -R /path/to/screenshots
     sudo chmod 770 -R /path/to/screenshots
 
 Edit `virtualenv_path` in Screen sizer settings:
-    
+
     nano settings.py    
     # Replace 'virtualenv_path' line and with your own path
-    
+
 # Available translations
 
 - French
@@ -170,13 +161,13 @@ Edit `virtualenv_path` in Screen sizer settings:
 
 - Small javascript refactoring
 - Added keyboard shorcut (inpired by [TestSize](http://testsize.com/)):
-    
+
     - for zooming-in (+) and out (-)
     - for iterating through sizes registered under "Frequent" menu (spacebar and ctrl+spacebar for reverse)
     - for rotation (R)
     - for full-screen (F)
     - for targeting url input (W), width input (X) and height input (C)
-    
+
 - Added "More..." modal for information regarding bookmarklet and keyboard shortcuts
 
 ## 0.2.2 (17 may 2014)
